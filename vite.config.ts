@@ -1,12 +1,11 @@
 import { fileURLToPath, URL } from 'node:url'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import vue from '@vitejs/plugin-vue2'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx()],
+  plugins: [vue()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -22,7 +21,7 @@ export default defineConfig({
       fileName: 'vue-previewable-image',
     },
     rollupOptions: {
-      external: ['vue', 'viewerjs', 'vue-demi'],
+      external: ['vue', 'viewerjs'],
       output: {
         globals: {
           vue: 'Vue',
@@ -30,8 +29,5 @@ export default defineConfig({
         },
       },
     },
-  },
-  optimizeDeps: {
-    exclude: ['vue-demi'],
   },
 })

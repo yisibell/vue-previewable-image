@@ -13,8 +13,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, toRefs, watch } from 'vue-demi'
-import type { PropType } from 'vue-demi'
+import { defineComponent, onMounted, ref, toRefs, watch } from 'vue'
+import type { PropType } from 'vue'
 import Viewer from 'viewerjs'
 import type {
   PreviewableSrcListItem,
