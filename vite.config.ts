@@ -22,7 +22,7 @@ export default defineConfig({
       fileName: 'vue-previewable-image',
     },
     rollupOptions: {
-      external: ['vue', 'viewerjs'],
+      external: ['vue', 'viewerjs', 'vue-demi'],
       output: {
         globals: {
           vue: 'Vue',
