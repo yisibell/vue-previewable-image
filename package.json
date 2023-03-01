@@ -1,6 +1,6 @@
 {
   "name": "vue-previewable-image",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A previewable image Vue component based on viewerjs.",
   "type": "module",
   "files": [

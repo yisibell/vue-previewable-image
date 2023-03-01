@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v1.1.2
+
+
+### 🩹 Fixes
+
+  - **vue-demi:** Vue-demi config (b8fc8e7)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.1.1
 
 
