@@ -1,7 +1,7 @@
-import { defineComponent as y, toRefs as b, computed as u, ref as g, watch as C, onMounted as S } from "vue";
-import V from "viewerjs";
+import { defineComponent as y, toRefs as b, computed as u, ref as g, watch as C, onMounted as S, onUnmounted as V } from "vue";
+import P from "viewerjs";
 import { default as N } from "viewerjs";
-const P = y({
+const $ = y({
   name: "PreviewableImage",
   props: {
     width: {
@@ -49,16 +49,16 @@ const P = y({
         const f = w;
         o.value = f.detail.index, r("switch", o.value, i.value);
       }), e;
-    }, i = g(), h = u(() => a.viewerTitle ? (e) => a.viewerTitle(e, {
+    }, i = g(), m = u(() => a.viewerTitle ? (e) => a.viewerTitle(e, {
       index: o.value,
       total: v.value
     }) : (e) => `${e.alt} [${o.value + 1}/${v.value}]`), _ = u(() => Object.assign(
       {
-        title: h.value
+        title: m.value
       },
       a.viewerOptions
     )), n = () => {
-      l.value && (i.value = new V(
+      l.value && (i.value = new P(
         t(),
         _.value
       ));
@@ -72,7 +72,7 @@ const P = y({
         deep: !0
       }
     );
-    const m = () => {
+    const h = () => {
       var e;
       (e = i.value) == null || e.view();
     }, d = () => {
@@ -80,18 +80,21 @@ const P = y({
     };
     return S(() => {
       d();
+    }), V(() => {
+      var e;
+      (e = i.value) == null || e.destroy();
     }), {
       currentViewerIndex: o,
       PreviewListLength: v,
       finalPreviewSrcList: c,
       imgStyleVars: p,
       viewer: i,
-      handleImgView: m,
+      handleImgView: h,
       hasPreviewList: l
     };
   }
 });
-function $(a, r, s, p, l, c, o, v) {
+function I(a, r, s, p, l, c, o, v) {
   var t = typeof a == "function" ? a.options : a;
   r && (t.render = r, t.staticRenderFns = s, t._compiled = !0), p && (t.functional = !0), c && (t._scopeId = "data-v-" + c);
   var i;
@@ -107,9 +110,9 @@ function $(a, r, s, p, l, c, o, v) {
   } : l), i)
     if (t.functional) {
       t._injectStyles = i;
-      var h = t.render;
-      t.render = function(m, d) {
-        return i.call(d), h(m, d);
+      var m = t.render;
+      t.render = function(h, d) {
+        return i.call(d), m(h, d);
       };
     } else {
       var _ = t.beforeCreate;
@@ -120,24 +123,24 @@ function $(a, r, s, p, l, c, o, v) {
     options: t
   };
 }
-var I = function() {
+var L = function() {
   var r = this, s = r._self._c;
   return r._self._setupProxy, s("div", { staticClass: "previewable-image", style: [{ width: r.width, height: r.height }, r.imgStyleVars] }, [s("img", { class: [
     "previewable-image__inner",
     { "previewable-image__preview": r.hasPreviewList }
   ], attrs: { src: r.src, alt: r.alt }, on: { click: r.handleImgView } })]);
-}, L = [], O = /* @__PURE__ */ $(
-  P,
-  I,
+}, O = [], R = /* @__PURE__ */ I(
+  $,
   L,
+  O,
   !1,
   null,
   null,
   null,
   null
 );
-const E = O.exports;
+const F = R.exports;
 export {
-  E as PreviewableImage,
+  F as PreviewableImage,
   N as Viewer
 };

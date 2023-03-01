@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v1.2.1
+
+
+### 🩹 Fixes
+
+  - When unmounted destory viewer instance (aa49359)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.2.0
 
 
