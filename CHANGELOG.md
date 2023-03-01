@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v1.2.0
+
+
+### 🚀 Enhancements
+
+  - Support vue 2.7 (71f1402)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.1.2
 
 

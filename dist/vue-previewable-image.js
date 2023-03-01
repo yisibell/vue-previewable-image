@@ -1,8 +1,7 @@
-import { defineComponent as _, toRefs as S, ref as p, watch as V, onMounted as b } from "vue-demi";
-import I from "viewerjs";
-import { default as R } from "viewerjs";
-import { computed as l, openBlock as L, createElementBlock as P, normalizeStyle as $, createElementVNode as O, normalizeClass as E } from "vue";
-const k = _({
+import { defineComponent as y, toRefs as b, computed as u, ref as g, watch as C, onMounted as S } from "vue";
+import V from "viewerjs";
+import { default as N } from "viewerjs";
+const P = y({
   name: "PreviewableImage",
   props: {
     width: {
@@ -33,89 +32,112 @@ const k = _({
     }
   },
   emits: ["switch"],
-  setup(e, { emit: n }) {
-    const { previewSrcList: r } = S(e), o = l(() => ({
-      "--img-object-fit": e.fit
-    })), a = l(
-      () => r.value && r.value.length > 0
-    ), v = l(() => a.value ? r.value.map((t) => ({
-      src: typeof t == "string" ? t : t.src,
-      alt: typeof t == "string" ? t : t.alt
-    })) : []), i = p(0), w = l(() => r.value.length || 0), g = () => {
-      const t = document.createElement("div");
-      return v.value.forEach((u) => {
-        const s = new Image();
-        s.src = u.src, s.alt = u.alt || "", t.appendChild(s);
-      }), t.addEventListener("view", (u) => {
-        const s = u;
-        i.value = s.detail.index, n("switch", i.value, c.value);
-      }), t;
-    }, c = p(), d = l(() => e.viewerTitle ? (t) => e.viewerTitle(t, {
-      index: i.value,
-      total: w.value
-    }) : (t) => `${t.alt} [${i.value + 1}/${w.value}]`), f = l(() => Object.assign(
+  setup(a, { emit: r }) {
+    const { previewSrcList: s } = b(a), p = u(() => ({
+      "--img-object-fit": a.fit
+    })), l = u(
+      () => s.value && s.value.length > 0
+    ), c = u(() => l.value ? s.value.map((e) => ({
+      src: typeof e == "string" ? e : e.src,
+      alt: typeof e == "string" ? e : e.alt
+    })) : []), o = g(0), v = u(() => s.value.length || 0), t = () => {
+      const e = document.createElement("div");
+      return c.value.forEach((w) => {
+        const f = new Image();
+        f.src = w.src, f.alt = w.alt || "", e.appendChild(f);
+      }), e.addEventListener("view", (w) => {
+        const f = w;
+        o.value = f.detail.index, r("switch", o.value, i.value);
+      }), e;
+    }, i = g(), h = u(() => a.viewerTitle ? (e) => a.viewerTitle(e, {
+      index: o.value,
+      total: v.value
+    }) : (e) => `${e.alt} [${o.value + 1}/${v.value}]`), _ = u(() => Object.assign(
       {
-        title: d.value
+        title: h.value
       },
-      e.viewerOptions
-    )), m = () => {
-      a.value && (c.value = new I(
-        g(),
-        f.value
+      a.viewerOptions
+    )), n = () => {
+      l.value && (i.value = new V(
+        t(),
+        _.value
       ));
     };
-    V(
-      r,
+    C(
+      s,
       () => {
-        m();
+        n();
       },
       {
         deep: !0
       }
     );
-    const h = () => {
-      var t;
-      (t = c.value) == null || t.view();
-    }, y = () => {
-      m();
+    const m = () => {
+      var e;
+      (e = i.value) == null || e.view();
+    }, d = () => {
+      n();
     };
-    return b(() => {
-      y();
+    return S(() => {
+      d();
     }), {
-      currentViewerIndex: i,
-      PreviewListLength: w,
-      finalPreviewSrcList: v,
-      imgStyleVars: o,
-      viewer: c,
-      handleImgView: h,
-      hasPreviewList: a
+      currentViewerIndex: o,
+      PreviewListLength: v,
+      finalPreviewSrcList: c,
+      imgStyleVars: p,
+      viewer: i,
+      handleImgView: m,
+      hasPreviewList: l
     };
   }
 });
-const C = (e, n) => {
-  const r = e.__vccOpts || e;
-  for (const [o, a] of n)
-    r[o] = a;
-  return r;
-}, j = ["src", "alt"];
-function T(e, n, r, o, a, v) {
-  return L(), P("div", {
-    class: "previewable-image",
-    style: $([{ width: e.width, height: e.height }, e.imgStyleVars])
-  }, [
-    O("img", {
-      src: e.src,
-      alt: e.alt,
-      class: E([
-        "previewable-image__inner",
-        { "previewable-image__preview": e.hasPreviewList }
-      ]),
-      onClick: n[0] || (n[0] = (...i) => e.handleImgView && e.handleImgView(...i))
-    }, null, 10, j)
-  ], 4);
+function $(a, r, s, p, l, c, o, v) {
+  var t = typeof a == "function" ? a.options : a;
+  r && (t.render = r, t.staticRenderFns = s, t._compiled = !0), p && (t.functional = !0), c && (t._scopeId = "data-v-" + c);
+  var i;
+  if (o ? (i = function(n) {
+    n = n || // cached call
+    this.$vnode && this.$vnode.ssrContext || // stateful
+    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), l && l.call(this, n), n && n._registeredComponents && n._registeredComponents.add(o);
+  }, t._ssrRegister = i) : l && (i = v ? function() {
+    l.call(
+      this,
+      (t.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : l), i)
+    if (t.functional) {
+      t._injectStyles = i;
+      var h = t.render;
+      t.render = function(m, d) {
+        return i.call(d), h(m, d);
+      };
+    } else {
+      var _ = t.beforeCreate;
+      t.beforeCreate = _ ? [].concat(_, i) : [i];
+    }
+  return {
+    exports: a,
+    options: t
+  };
 }
-const A = /* @__PURE__ */ C(k, [["render", T]]);
+var I = function() {
+  var r = this, s = r._self._c;
+  return r._self._setupProxy, s("div", { staticClass: "previewable-image", style: [{ width: r.width, height: r.height }, r.imgStyleVars] }, [s("img", { class: [
+    "previewable-image__inner",
+    { "previewable-image__preview": r.hasPreviewList }
+  ], attrs: { src: r.src, alt: r.alt }, on: { click: r.handleImgView } })]);
+}, L = [], O = /* @__PURE__ */ $(
+  P,
+  I,
+  L,
+  !1,
+  null,
+  null,
+  null,
+  null
+);
+const E = O.exports;
 export {
-  A as PreviewableImage,
-  R as Viewer
+  E as PreviewableImage,
+  N as Viewer
 };
