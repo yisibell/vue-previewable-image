@@ -9,13 +9,14 @@ export default defineConfig({
   plugins: [vue(), vueJsx()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '~~': fileURLToPath(new URL('./', import.meta.url)),
+    },
   },
   build: {
     lib: {
       // Could also be a dictionary or array of multiple entry points
-      entry: resolve(__dirname, 'lib/main.ts'),
+      entry: resolve(__dirname, 'src/lib/main.ts'),
       name: 'VuePreviewableImage',
       // the proper extensions will be added
       fileName: 'vue-previewable-image',
@@ -25,6 +26,7 @@ export default defineConfig({
       output: {
         globals: {
           vue: 'Vue',
+          viewerjs: 'Viewer',
         },
       },
     },
