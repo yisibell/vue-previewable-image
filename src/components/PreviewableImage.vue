@@ -13,7 +13,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, toRefs, watch } from 'vue'
+import {
+  defineComponent,
+  onMounted,
+  onUnmounted,
+  ref,
+  toRefs,
+  watch,
+} from 'vue'
 import type { PropType } from 'vue'
 import Viewer from 'viewerjs'
 import type {
@@ -166,6 +173,10 @@ export default defineComponent({
 
     onMounted(() => {
       init()
+    })
+
+    onUnmounted(() => {
+      viewer.value?.destroy()
     })
 
     return {
