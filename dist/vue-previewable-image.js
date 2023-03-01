@@ -1,6 +1,7 @@
-import { defineComponent as _, toRefs as S, computed as l, ref as m, watch as V, onMounted as b, openBlock as I, createElementBlock as L, normalizeStyle as P, createElementVNode as $, normalizeClass as O } from "vue";
-import E from "viewerjs";
-import { default as N } from "viewerjs";
+import { defineComponent as _, toRefs as S, ref as p, watch as V, onMounted as b } from "vue-demi";
+import I from "viewerjs";
+import { default as R } from "viewerjs";
+import { computed as l, openBlock as L, createElementBlock as P, normalizeStyle as $, createElementVNode as O, normalizeClass as E } from "vue";
 const k = _({
   name: "PreviewableImage",
   props: {
@@ -40,7 +41,7 @@ const k = _({
     ), v = l(() => a.value ? r.value.map((t) => ({
       src: typeof t == "string" ? t : t.src,
       alt: typeof t == "string" ? t : t.alt
-    })) : []), i = m(0), w = l(() => r.value.length || 0), g = () => {
+    })) : []), i = p(0), w = l(() => r.value.length || 0), g = () => {
       const t = document.createElement("div");
       return v.value.forEach((u) => {
         const s = new Image();
@@ -49,7 +50,7 @@ const k = _({
         const s = u;
         i.value = s.detail.index, n("switch", i.value, c.value);
       }), t;
-    }, c = m(), d = l(() => e.viewerTitle ? (t) => e.viewerTitle(t, {
+    }, c = p(), d = l(() => e.viewerTitle ? (t) => e.viewerTitle(t, {
       index: i.value,
       total: w.value
     }) : (t) => `${t.alt} [${i.value + 1}/${w.value}]`), f = l(() => Object.assign(
@@ -57,8 +58,8 @@ const k = _({
         title: d.value
       },
       e.viewerOptions
-    )), p = () => {
-      a.value && (c.value = new E(
+    )), m = () => {
+      a.value && (c.value = new I(
         g(),
         f.value
       ));
@@ -66,7 +67,7 @@ const k = _({
     V(
       r,
       () => {
-        p();
+        m();
       },
       {
         deep: !0
@@ -76,7 +77,7 @@ const k = _({
       var t;
       (t = c.value) == null || t.view();
     }, y = () => {
-      p();
+      m();
     };
     return b(() => {
       y();
@@ -98,14 +99,14 @@ const C = (e, n) => {
   return r;
 }, j = ["src", "alt"];
 function T(e, n, r, o, a, v) {
-  return I(), L("div", {
+  return L(), P("div", {
     class: "previewable-image",
-    style: P([{ width: e.width, height: e.height }, e.imgStyleVars])
+    style: $([{ width: e.width, height: e.height }, e.imgStyleVars])
   }, [
-    $("img", {
+    O("img", {
       src: e.src,
       alt: e.alt,
-      class: O([
+      class: E([
         "previewable-image__inner",
         { "previewable-image__preview": e.hasPreviewList }
       ]),
@@ -113,8 +114,8 @@ function T(e, n, r, o, a, v) {
     }, null, 10, j)
   ], 4);
 }
-const F = /* @__PURE__ */ C(k, [["render", T]]);
+const A = /* @__PURE__ */ C(k, [["render", T]]);
 export {
-  F as PreviewableImage,
-  N as Viewer
+  A as PreviewableImage,
+  R as Viewer
 };
