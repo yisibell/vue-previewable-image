@@ -1,19 +1,24 @@
 <template>
   <main>
     <PreviewableImage
-      src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
-      width="100px"
+      :current-preview-index.sync="currentIndex"
+      :src="src"
       :preview-src-list="srcList"
       :viewer-title="viewerTitle"
+      width="100px"
       @switch="handleSwitch"
     />
   </main>
 </template>
 
 <script setup lang="ts">
-import type { CustomViewerTitle, ViewerSwitchEvent } from '~~/types'
+import { ref } from 'vue'
 
 import PreviewableImage from '@/components/PreviewableImage.vue'
+import type { CustomViewerTitle, ViewerSwitchEvent } from '~~/types'
+
+const src =
+  'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
 
 const srcList = [
   'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
@@ -21,10 +26,13 @@ const srcList = [
 ]
 
 const viewerTitle: CustomViewerTitle = (img, { index, total }) => {
+  console.log('img:', img)
   return `${img.alt} (${index + 1}/${total})`
 }
 
 const handleSwitch: ViewerSwitchEvent = (index, viewer) => {
-  console.log(index, viewer)
+  console.log('on switch:', index, viewer)
 }
+
+const currentIndex = ref(0)
 </script>

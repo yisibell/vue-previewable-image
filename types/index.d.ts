@@ -7,10 +7,15 @@ type ViewerOptions = Viewer.Options
 
 type ViewerOptionsTitle = Pick<ViewerOptions, 'title'>
 
-type PreviewableSrcObject = {
+interface PreviewableSrcObject {
   src: string
   alt?: string
+  [key: string | number]: any
 }
+
+interface PreviewableImageElement
+  extends HTMLImageElement,
+    PreviewableSrcObject {}
 
 type PreviewableSrcListItem = string | PreviewableSrcObject
 
@@ -21,7 +26,7 @@ interface ViewerViewEvent extends CustomEvent {
 }
 
 type CustomViewerTitle = (
-  img: PreviewableSrcObject,
+  imgElement: PreviewableImageElement,
   detail: { index: number; total: number }
 ) => string
 
@@ -32,21 +37,25 @@ interface PreviewableImageProps {
   alt?: string
   fit?: string
   previewSrcList?: PreviewableSrcListItem[]
+  currentPreviewIndex?: number
   viewerOptions?: ViewerOptions
   viewerTitle?: CustomViewerTitle
 }
 
 type ViewerSwitchEvent = (index: number, viewer: ViewerType) => void
 
-declare const PreviewableImage: Component<PreviewableImageProps>
+declare const PreviewableImage: Component<{}, {}, {}, PreviewableImageProps>
 
 export {
   PreviewableImage,
   Viewer,
+
+  // types
   ViewerType,
   ViewerOptions,
   ViewerViewEvent,
   PreviewableSrcObject,
+  PreviewableImageElement,
   PreviewableSrcListItem,
   ViewerOptionsTitle,
   CustomViewerTitle,

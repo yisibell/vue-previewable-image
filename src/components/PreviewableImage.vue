@@ -28,8 +28,16 @@ import type {
   ViewerOptions,
   CustomViewerTitle,
   PreviewableSrcObject,
+  PreviewableImageElement,
   ViewerViewEvent,
 } from '~~/types'
+
+function isPreviewableSrcString(
+  previewSrcList: PreviewableSrcListItem[]
+): previewSrcList is string[] {
+  if (typeof previewSrcList[0] === 'string') return true
+  return false
+}
 
 import 'viewerjs/dist/viewer.css'
 import { computed } from 'vue'
@@ -39,15 +47,19 @@ export default defineComponent({
   props: {
     width: {
       type: String,
+      default: undefined,
     },
     height: {
       type: String,
+      default: undefined,
     },
     src: {
       type: String,
+      default: '',
     },
     alt: {
       type: String,
+      default: '',
     },
     fit: {
       type: String,
@@ -57,16 +69,24 @@ export default defineComponent({
       type: Array as PropType<PreviewableSrcListItem[]>,
       default: () => [],
     },
+    currentPreviewIndex: {
+      type: Number,
+      default: 0,
+    },
     viewerOptions: {
       type: Object as PropType<ViewerOptions>,
+      default: () => ({}),
     },
     viewerTitle: {
       type: Function as PropType<CustomViewerTitle>,
+      default: undefined,
     },
   },
-  emits: ['switch'],
+  emits: ['switch', 'update:currentPreviewIndex'],
   setup(props, { emit }) {
-    const { previewSrcList } = toRefs(props)
+    const { previewSrcList, currentPreviewIndex } = toRefs(props)
+
+    const viewer = ref<Viewer>()
 
     const imgStyleVars = computed(() => {
       return {
@@ -79,29 +99,39 @@ export default defineComponent({
     )
 
     const finalPreviewSrcList = computed<PreviewableSrcObject[]>(() => {
-      if (hasPreviewList.value) {
+      if (!hasPreviewList.value) return []
+
+      if (isPreviewableSrcString(previewSrcList.value)) {
         return previewSrcList.value.map((v) => {
           return {
-            src: typeof v === 'string' ? v : v.src,
-            alt: typeof v === 'string' ? v : v.alt,
+            src: v,
+            alt: v,
           }
         })
+      } else {
+        return previewSrcList.value as PreviewableSrcObject[]
       }
-
-      return []
     })
 
-    const currentViewerIndex = ref(0)
+    const currentViewerIndex = computed({
+      get() {
+        return currentPreviewIndex.value
+      },
+      set(value: number) {
+        emit('update:currentPreviewIndex', value)
+      },
+    })
     const PreviewListLength = computed(() => previewSrcList.value.length || 0)
 
     const createPreviewableImages = () => {
       const wrapper = document.createElement('div')
 
-      finalPreviewSrcList.value.forEach((v) => {
+      finalPreviewSrcList.value.forEach((imgDesc) => {
         const img = new Image()
 
-        img.src = v.src
-        img.alt = v.alt || ''
+        Object.keys(imgDesc).forEach((k) => {
+          ;(img as PreviewableImageElement)[k] = imgDesc[k]
+        })
 
         wrapper.appendChild(img)
       })
@@ -116,11 +146,9 @@ export default defineComponent({
       return wrapper
     }
 
-    const viewer = ref<Viewer>()
-
     const titleFunc = computed(() => {
       if (props.viewerTitle) {
-        return (img: PreviewableSrcObject) => {
+        return (img: PreviewableImageElement) => {
           return (props.viewerTitle as CustomViewerTitle)(img, {
             index: currentViewerIndex.value,
             total: PreviewListLength.value,
@@ -128,10 +156,10 @@ export default defineComponent({
         }
       }
 
-      return (img: PreviewableSrcObject) => {
-        return `${img.alt} [${currentViewerIndex.value + 1}/${
+      return (img: PreviewableImageElement) => {
+        return `${img.alt} (${currentViewerIndex.value + 1}/${
           PreviewListLength.value
-        }]`
+        })`
       }
     })
 
@@ -164,7 +192,7 @@ export default defineComponent({
     )
 
     const handleImgView = () => {
-      viewer.value?.view()
+      viewer.value?.view(currentViewerIndex.value)
     }
 
     const init = () => {
@@ -180,7 +208,6 @@ export default defineComponent({
     })
 
     return {
-      currentViewerIndex,
       PreviewListLength,
       finalPreviewSrcList,
       imgStyleVars,
