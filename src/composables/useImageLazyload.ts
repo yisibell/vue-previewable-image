@@ -1,6 +1,11 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 
-export const useImageLazyload = (src: string, lazy = true) => {
+export const useImageLazyload = (
+  src: string,
+  lazy = true,
+  errorCallback?: (e: Event) => void,
+  loadCallback?: (e: Event) => void
+) => {
   const lazyloadTrigger = ref<HTMLElement>()
   const lazySrc = ref('')
   const lazyloadSuccess = ref(false)
@@ -24,19 +29,25 @@ export const useImageLazyload = (src: string, lazy = true) => {
 
             lazyloading.value = true
 
-            lazyImg.addEventListener('load', () => {
+            lazyImg.addEventListener('load', (e: Event) => {
               target.classList.add('lazy-loaded')
-              lazyloaded.value = true
               lazySrc.value = src
+              lazyloaded.value = true
               lazyloadSuccess.value = true
+              lazyloadError.value = false
               lazyloading.value = false
+
+              loadCallback && loadCallback(e)
             })
 
-            lazyImg.addEventListener('error', () => {
+            lazyImg.addEventListener('error', (e: Event) => {
               target.classList.add('lazy-loaded')
               lazyloaded.value = true
               lazyloadError.value = true
+              lazyloadSuccess.value = false
               lazyloading.value = false
+
+              errorCallback && errorCallback(e)
             })
 
             lazyImg.src = src

@@ -4,10 +4,10 @@
     class="previewable-image"
     :style="[{ width, height }, imgStyleVars]"
   >
-    <div v-if="lazyloading" class="previewable-image__placeholder">
+    <div v-if="lazy && lazyloading" class="previewable-image__placeholder">
       <slot name="placeholder">Loading...</slot>
     </div>
-    <div v-else-if="lazyloadError" class="previewable-image__error">
+    <div v-else-if="lazy && lazyloadError" class="previewable-image__error">
       <slot name="error">Load Error</slot>
     </div>
     <img
@@ -99,12 +99,26 @@ export default defineComponent({
       default: true,
     },
   },
-  emits: ['switch', 'update:currentPreviewIndex'],
+  emits: ['switch', 'update:currentPreviewIndex', 'load', 'error'],
   setup(props, { emit }) {
     const { previewSrcList, currentPreviewIndex } = toRefs(props)
 
-    const { lazySrc, lazyloadTrigger, lazyloading, lazyloadError } =
-      useImageLazyload(props.src, props.lazy)
+    const {
+      lazySrc,
+      lazyloadTrigger,
+      lazyloading,
+      lazyloadError,
+      lazyloadSuccess,
+    } = useImageLazyload(
+      props.src,
+      props.lazy,
+      (e) => {
+        emit('load', e)
+      },
+      (e) => {
+        emit('error', e)
+      }
+    )
 
     const viewer = ref<Viewer>()
 
@@ -195,6 +209,9 @@ export default defineComponent({
     const createViewer = () => {
       if (!hasPreviewList.value) return
 
+      // make sure the images in viewer could lazy load
+      if (props.lazy && !lazyloadSuccess.value) return
+
       viewer.value = new Viewer(
         createPreviewableImages(),
         finalViewerOptions.value
@@ -202,7 +219,7 @@ export default defineComponent({
     }
 
     watch(
-      previewSrcList,
+      [lazyloadSuccess, previewSrcList],
       () => {
         createViewer()
       },

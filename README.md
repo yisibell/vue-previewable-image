@@ -105,6 +105,8 @@ import { Viewer } from 'vue-previewable-image'
 | Event name | Description | Callback arguments |
 | :---: | :---: | :---: |
 | `switch` | Emit when preview image switch. | `(index: number, viewer: Viewer) => void` |
+| `load` | Emit when image load success. | `(e: Event) => void` |
+| `error` | Emit when image load error. | `(e: Event) => void` |
 
 
 # Slots
