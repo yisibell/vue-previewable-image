@@ -17,6 +17,7 @@ A **previewable** image Vue component based on <a href="https://github.com/fengy
 # Features
 
 - Support preview image via `viewerjs`.
+- Support image lazy load.
 
 # Installation
 
