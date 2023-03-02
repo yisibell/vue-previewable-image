@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v1.3.0
+
+
+### 🚀 Enhancements
+
+  - Support currentPreviewIndex; update types (d480d13)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.2.1
 
 
