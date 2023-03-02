@@ -36,6 +36,7 @@ interface PreviewableImageProps {
   src: string
   alt?: string
   fit?: string
+  lazy?: boolean
   previewSrcList?: PreviewableSrcListItem[]
   currentPreviewIndex?: number
   viewerOptions?: ViewerOptions
