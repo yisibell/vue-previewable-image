@@ -12,12 +12,12 @@
 
 A **previewable** image Vue component based on <a href="https://github.com/fengyuanchen/viewerjs" target="_blank">viewerjs</a>.
 
-> TIPS: `vue-previewable-image` needs **Vue** verison to `2.7.0+`.
+> :warning: TIPS: `vue-previewable-image` needs **Vue** verison to `2.7.0+`.
 
 # Features
 
-- Support preview image via `viewerjs`.
-- Support image lazy load.
+- :heavy_check_mark: Support preview image via `viewerjs`.
+- :heavy_check_mark: Support image lazy load.
 
 # Installation
 
@@ -33,6 +33,8 @@ $ npm i vue-previewable-image
 ```
 
 # Usage
+
+> Do not forgot to import the style `vue-previewable-image/dist/style.css`
 
 ```vue
 <template>
@@ -73,6 +75,12 @@ const handleSwitch: ViewerSwitchEvent = (index, viewer) => {
 const currentIndex = ref(0)
 </script>
 
+```
+
+You also can use `viewerjs` from this package:
+
+```js
+import { Viewer } from 'vue-previewable-image'
 ```
 
 # Attributes
