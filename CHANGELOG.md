@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v1.4.1
+
+
+### 🩹 Fixes
+
+  - **types:** Add lazy attr type (6a4ad17)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.4.0
 
 
