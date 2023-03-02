@@ -1,6 +1,21 @@
 # Changelog
 
 
+## v1.4.0
+
+
+### 🚀 Enhancements
+
+  - Support image lazy load (0c9df21)
+
+### 🏡 Chore
+
+  - **docs:** Update readme (c2c6b69)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.3.0
 
 
