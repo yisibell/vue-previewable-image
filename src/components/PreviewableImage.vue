@@ -1,7 +1,18 @@
 <template>
-  <div class="previewable-image" :style="[{ width, height }, imgStyleVars]">
+  <div
+    ref="lazyloadTrigger"
+    class="previewable-image"
+    :style="[{ width, height }, imgStyleVars]"
+  >
+    <div v-if="lazyloading" class="previewable-image__placeholder">
+      <slot name="placeholder">Loading...</slot>
+    </div>
+    <div v-else-if="lazyloadError" class="previewable-image__error">
+      <slot name="error">Load Error</slot>
+    </div>
     <img
-      :src="src"
+      v-else
+      :src="lazySrc"
       :alt="alt"
       :class="[
         'previewable-image__inner',
@@ -23,6 +34,8 @@ import {
 } from 'vue'
 import type { PropType } from 'vue'
 import Viewer from 'viewerjs'
+import { useImageLazyload } from '@/composables/useImageLazyload'
+
 import type {
   PreviewableSrcListItem,
   ViewerOptions,
@@ -81,10 +94,17 @@ export default defineComponent({
       type: Function as PropType<CustomViewerTitle>,
       default: undefined,
     },
+    lazy: {
+      type: Boolean,
+      default: true,
+    },
   },
   emits: ['switch', 'update:currentPreviewIndex'],
   setup(props, { emit }) {
     const { previewSrcList, currentPreviewIndex } = toRefs(props)
+
+    const { lazySrc, lazyloadTrigger, lazyloading, lazyloadError } =
+      useImageLazyload(props.src, props.lazy)
 
     const viewer = ref<Viewer>()
 
@@ -208,12 +228,16 @@ export default defineComponent({
     })
 
     return {
+      lazyloadTrigger,
       PreviewListLength,
       finalPreviewSrcList,
       imgStyleVars,
       viewer,
       handleImgView,
       hasPreviewList,
+      lazySrc,
+      lazyloading,
+      lazyloadError,
     }
   },
 })
@@ -226,13 +250,29 @@ export default defineComponent({
   overflow: hidden;
 
   &__inner {
-    width: 100%;
-    height: 100%;
     object-fit: var(--img-object-fit);
   }
 
   &__preview {
     cursor: pointer;
+  }
+
+  &__error,
+  &__placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: #c0c4cc;
+    vertical-align: middle;
+  }
+
+  &__inner,
+  &__error,
+  &__placeholder {
+    width: 100%;
+    height: 100%;
+    background: #f5f7fa;
   }
 }
 </style>

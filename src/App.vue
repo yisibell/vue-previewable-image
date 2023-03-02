@@ -1,13 +1,16 @@
 <template>
   <main>
-    <PreviewableImage
-      :current-preview-index.sync="currentIndex"
-      :src="src"
-      :preview-src-list="srcList"
-      :viewer-title="viewerTitle"
-      width="100px"
-      @switch="handleSwitch"
-    />
+    <div style="height: 120vh">----------------------</div>
+    <div>
+      <PreviewableImage
+        :current-preview-index.sync="currentIndex"
+        :src="src"
+        :preview-src-list="srcList"
+        :viewer-title="viewerTitle"
+        width="100px"
+        @switch="handleSwitch"
+      />
+    </div>
   </main>
 </template>
 
