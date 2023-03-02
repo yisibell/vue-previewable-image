@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v1.5.0
+
+
+### 🚀 Enhancements
+
+  - Add image load and error event; fix lazy load (c7e3e9b)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.4.2
 
 
