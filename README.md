@@ -85,6 +85,29 @@ import { Viewer } from 'vue-previewable-image'
 
 This is equal to `import Viewer from 'viewerjs'`
 
+
+## Using via Vue plugin
+
+```ts
+// @/plugins/vue-previewable-image.ts
+
+import Vue from 'vue'
+import PreviewableImage from 'vue-previewable-image'
+import type { PreviewableImageOptions } from 'vue-previewable-image'
+
+Vue.use(PreviewableImage, {
+  // set global component name
+  componentName: 'PreviewableImage',
+
+  // set Viewer default options
+  defaultViewerOptions: {
+    // ...
+  }
+
+} as PreviewableImageOptions)
+
+```
+
 # Attributes
 
 | Prop name | Description | Type | Available value  | Default value |

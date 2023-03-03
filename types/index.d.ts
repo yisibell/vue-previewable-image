@@ -49,11 +49,17 @@ type ViewerSwitchEvent = (index: number, viewer: ViewerType) => void
 
 declare const PreviewableImage: Component<{}, {}, {}, PreviewableImageProps>
 
+interface PreviewableImageOptions {
+  componentName?: string
+  defaultViewerOptions?: ViewerOptions
+}
+
 export {
   PreviewableImage,
   Viewer,
 
   // types
+  PreviewableImageOptions,
   ViewerType,
   ViewerOptions,
   ViewerViewEvent,
