@@ -1,6 +1,21 @@
 # Changelog
 
 
+## v1.6.0
+
+
+### 🚀 Enhancements
+
+  - Support quick define viewer z-index and img referrerPolicy attribute (1e37dba)
+
+### 🏡 Chore
+
+  - **docs:** Update readme (980e0e8)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.5.0
 
 
