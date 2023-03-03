@@ -14,6 +14,7 @@
       v-else
       :src="lazySrc"
       :alt="alt"
+      :referrerpolicy="referrerPolicy"
       :class="[
         'previewable-image__inner',
         { 'previewable-image__preview': hasPreviewList },
@@ -74,9 +75,17 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    referrerPolicy: {
+      type: String,
+      default: undefined,
+    },
     fit: {
       type: String,
       default: 'fill',
+    },
+    zIndex: {
+      type: [Number, String],
+      default: 2015,
     },
     previewSrcList: {
       type: Array as PropType<PreviewableSrcListItem[]>,
@@ -201,6 +210,7 @@ export default defineComponent({
       return Object.assign(
         {
           title: titleFunc.value,
+          zIndex: props.zIndex,
         },
         props.viewerOptions
       )

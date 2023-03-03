@@ -35,8 +35,10 @@ interface PreviewableImageProps {
   height?: string
   src: string
   alt?: string
+  referrerPolicy?: string
   fit?: string
   lazy?: boolean
+  zIndex?: boolean | string
   previewSrcList?: PreviewableSrcListItem[]
   currentPreviewIndex?: number
   viewerOptions?: ViewerOptions
