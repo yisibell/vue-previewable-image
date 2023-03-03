@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v1.7.0
+
+
+### 🚀 Enhancements
+
+  - Support using via a vue plugin (0353e5a)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.6.0
 
 
