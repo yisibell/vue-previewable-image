@@ -83,16 +83,18 @@ You also can use `viewerjs` from this package:
 import { Viewer } from 'vue-previewable-image'
 ```
 
+This is equal to `import Viewer from 'viewerjs'`
+
 # Attributes
 
 | Prop name | Description | Type | Available value  | Default value |
 | :----: | :----: | :----: | :----: | :----: |
-| `width` | The `img` container `width` | `string` | - | `undefined` |
-| `height` | The `img` container `height` | `string` | - | `undefined` |
-| `src` | The `img` 's `src` | `string` | - | `undefined` |
-| `alt` | The `img` 's `alt` | `string` | - | `undefined` |
+| `width` | The **img** container `width` | `string` | - | `undefined` |
+| `height` | The **img** container `height` | `string` | - | `undefined` |
+| `src` | The `src` of **img** | `string` | - | `undefined` |
+| `alt` | The `alt` of **img** | `string` | - | `undefined` |
 | `lazy` | Weather to enable image lazy load | `boolean` | - | `true` |
-| `fit` | The `img` 's `object-ft` | `string` | `fill / contain / cover / none / scale-down` | `fill` |
+| `fit` | The `object-ft` of **img** | `string` | `fill / contain / cover / none / scale-down` | `fill` |
 | `previewSrcList` | Define your picture preview list  | `string[]` or `{ src: string; alt: string}[]` | - | `[]` |
 | `currentPreviewIndex` | Current preview image shown index, support `.sync`  | `number` | - | `0` |
 | `viewerOptions` | Define <a href="https://github.com/fengyuanchen/viewerjs" target="_blank">viewerjs Options</a> | - | - | `{}` |
