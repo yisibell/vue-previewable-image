@@ -19,6 +19,13 @@ A **previewable** image Vue component based on <a href="https://github.com/fengy
 - :heavy_check_mark: Support preview image via `viewerjs`.
 - :heavy_check_mark: Support image lazy load.
 
+# Package
+
+| Version | Support Vue version | Docs |
+| :---: | :---: | :---: |
+| `^1.7.0+` | `^2.7.14` | See <a href="https://github.com/yisibell/vue-previewable-image/tree/1.x" target="_blank">v1</a> |
+| `^2.1.1+` | `^3.2.0` and above | See <a href="https://github.com/yisibell/vue-previewable-image" target="_blank">v2</a> |
+
 # Installation
 
 ```bash
