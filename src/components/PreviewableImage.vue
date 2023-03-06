@@ -91,6 +91,7 @@ export default defineComponent({
       type: Array as PropType<PreviewableSrcListItem[]>,
       default: () => [],
     },
+    // support v-model
     currentPreviewIndex: {
       type: Number,
       default: 0,

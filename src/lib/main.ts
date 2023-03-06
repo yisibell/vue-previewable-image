@@ -1,9 +1,9 @@
 import PreviewableImage from '@/components/PreviewableImage.vue'
 import Viewer from 'viewerjs'
-import type { VueConstructor } from 'vue'
+import type { App } from 'vue'
 import type { PreviewableImageOptions } from '~~/types'
 
-const install = (Vue: VueConstructor, option?: PreviewableImageOptions) => {
+const install = (Vue: App, option?: PreviewableImageOptions) => {
   const finalOption = Object.assign(
     {
       componentName: PreviewableImage.name,

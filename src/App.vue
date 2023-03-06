@@ -3,7 +3,7 @@
     <div style="height: 120vh">----------------------</div>
     <div>
       <PreviewableImage
-        :current-preview-index.sync="currentIndex"
+        v-model:current-preview-index="currentIndex"
         :src="src"
         :preview-src-list="srcList"
         :viewer-title="viewerTitle"
