@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v2.1.0
+
+
+### 🚀 Enhancements
+
+  - **v2:** Support vue3 (ba190de)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.7.0
 
 
