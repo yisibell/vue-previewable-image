@@ -24,7 +24,7 @@ A **previewable** image Vue component based on <a href="https://github.com/fengy
 | Version | Support Vue version | Docs |
 | :---: | :---: | :---: |
 | `^1.7.0+` | `^2.7.14` | See <a href="https://github.com/yisibell/vue-previewable-image/tree/1.x" target="_blank">v1</a> |
-| `^2.1.1+` | `^3.2.0` and above | See <a href="https://github.com/yisibell/vue-previewable-image" target="_blank">v2</a> |
+| `^2.1.2+` | `^3.2.0` and above | See <a href="https://github.com/yisibell/vue-previewable-image" target="_blank">v2</a> |
 
 # Installation
 
@@ -96,13 +96,16 @@ This is equal to `import Viewer from 'viewerjs'`
 ## Using via Vue plugin
 
 ```ts
-// @/plugins/vue-previewable-image.ts
+// main.ts
 
-import Vue from 'vue'
+import { createApp } from 'vue'
+import App from './App.vue'
 import PreviewableImage from 'vue-previewable-image'
 import type { PreviewableImageOptions } from 'vue-previewable-image'
 
-Vue.use(PreviewableImage, {
+const app = createApp(App)
+
+app.use(PreviewableImage, {
   // set global component name
   componentName: 'PreviewableImage',
 
@@ -111,7 +114,7 @@ Vue.use(PreviewableImage, {
     // ...
   }
 
-} as PreviewableImageOptions)
+} as PreviewableImageOptions).mount('#app')
 
 ```
 
