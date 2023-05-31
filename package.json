@@ -8,13 +8,13 @@
     "types",
     "client.d.ts"
   ],
-  "main": "./dist/vue-previewable-image.umd.cjs",
+  "main": "./dist/vue-previewable-image.cjs",
   "module": "./dist/vue-previewable-image.js",
   "types": "./types/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/vue-previewable-image.js",
-      "require": "./dist/vue-previewable-image.umd.cjs"
+      "require": "./dist/vue-previewable-image.cjs"
     },
     "./dist/style.css": "./dist/style.css"
   },

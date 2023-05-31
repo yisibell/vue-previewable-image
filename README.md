@@ -83,7 +83,9 @@ You also can use `viewerjs` from this package:
 import { Viewer } from 'vue-previewable-image'
 ```
 
-This is equal to `import Viewer from 'viewerjs'`
+This is equal to `import Viewer from 'viewerjs'`.
+
+Or, using image viewer as a component, See [ImageViewer](./docs/image-viewer-component.md).
 
 
 ## Using via Vue plugin
