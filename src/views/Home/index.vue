@@ -24,7 +24,7 @@
 
       <div class="home-demos__item">
         <div class="home-demos__title">
-          1. Using
+          2. Using
           <code class="language-markup"> {{ `<ImageViewer />` }} </code>
           component.
         </div>
