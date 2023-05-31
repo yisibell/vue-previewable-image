@@ -39,6 +39,9 @@ devDependencies:
   changelogen:
     specifier: ^0.4.1
     version: 0.4.1
+  cross-env:
+    specifier: ^7.0.3
+    version: 7.0.3
   cz-conventional-changelog:
     specifier: ^3.3.0
     version: 3.3.0
@@ -57,6 +60,9 @@ devDependencies:
   prettier:
     specifier: ^2.8.4
     version: 2.8.4
+  prismjs:
+    specifier: ^1.29.0
+    version: 1.29.0
   sass:
     specifier: ^1.58.3
     version: 1.58.3
@@ -72,6 +78,12 @@ devDependencies:
   vue:
     specifier: ^3.2.47
     version: 3.2.47
+  vue-previewable-image:
+    specifier: ^2.2.0
+    version: 2.2.0(vue@3.2.47)
+  vue-router:
+    specifier: ^4.2.2
+    version: 4.2.2(vue@3.2.47)
   vue-tsc:
     specifier: ^1.2.0
     version: 1.2.0(typescript@4.8.4)
@@ -1170,6 +1182,10 @@ packages:
       '@vue/shared': 3.3.4
     dev: true
 
+  /@vue/devtools-api@6.5.0:
+    resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
+    dev: true
+
   /@vue/eslint-config-prettier@7.1.0(eslint@8.34.0)(prettier@2.8.4):
     resolution: {integrity: sha512-Pv/lVr0bAzSIHLd9iz0KnvAr4GKyCEl+h52bc4e5yWuDVtLgFwycF7nrbWTAQAS+FU6q1geVd07lc6EWfJiWKQ==}
     peerDependencies:
@@ -1787,6 +1803,14 @@ packages:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
     dev: true
     optional: true
+
+  /cross-env@7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
+    dev: true
 
   /cross-spawn@6.0.5:
     resolution: {integrity: sha512-eTVLrBSt7fjbDygz805pMnstIs2VTBNkRm0qxZd+M7A5XDdxVRWO5MxGBXZhjY4cqLYLdtrGqRf8mBPmzwSpWQ==}
@@ -3725,6 +3749,11 @@ packages:
       react-is: 17.0.2
     dev: true
 
+  /prismjs@1.29.0:
+    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
+    engines: {node: '>=6'}
+    dev: true
+
   /proto-list@1.2.4:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
     dev: true
@@ -4406,7 +4435,6 @@ packages:
 
   /viewerjs@1.11.2:
     resolution: {integrity: sha512-z7N9R91ORhtLvOUxN7GoIl+MFVVMbtWNB1T2UmTKuMlzc4EevS+/bletZcIwDf8RIUzk2CFMdleQzcsjsfLl+A==}
-    dev: false
 
   /vite-node@0.29.1(@types/node@18.14.2)(sass@1.58.3):
     resolution: {integrity: sha512-Ey9bTlQOQrCxQN0oJ7sTg+GrU4nTMLg44iKTFCKf31ry60csqQz4E+Q04hdWhwE4cTgpxUC+zEB1kHbf5jNkFA==}
@@ -4536,6 +4564,24 @@ packages:
       semver: 7.5.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /vue-previewable-image@2.2.0(vue@3.2.47):
+    resolution: {integrity: sha512-W+6xrP10HSN6ATMiZSj2Ul9BzB4cPtNXDoHMYiYhkyBg1iYVLSycauha0gl1YZj4FMyaryzxdY9O6/rAwKeTRw==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      viewerjs: 1.11.2
+      vue: 3.2.47
+    dev: true
+
+  /vue-router@4.2.2(vue@3.2.47):
+    resolution: {integrity: sha512-cChBPPmAflgBGmy3tBsjeoe3f3VOSG6naKyY5pjtrqLGbNEXdzCigFUHgBvp9e3ysAtFtEx7OLqcSDh/1Cq2TQ==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.5.0
+      vue: 3.2.47
     dev: true
 
   /vue-template-compiler@2.7.14:
