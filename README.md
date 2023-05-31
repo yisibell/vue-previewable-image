@@ -119,7 +119,7 @@ Vue.use(PreviewableImage, {
 | `src` | The `src` of **img** | `string` | - | `undefined` |
 | `alt` | The `alt` of **img** | `string` | - | `undefined` |
 | `referrerPolicy` | The `referrerPolicy` of **img** | `string` | - | `undefined` |
-| `lazy` | Weather to enable image lazy load | `boolean` | - | `true` |
+| `lazy` | Whether to enable image lazy load | `boolean` | - | `true` |
 | `zIndex` | Define the CSS `z-index` value of the viewer in modal mode | `number` or `string` | - | `2015` |
 | `fit` | The `object-ft` of **img** | `string` | `fill / contain / cover / none / scale-down` | `fill` |
 | `previewSrcList` | Define your previewable image list  | `string[]` or `{ src: string; alt: string}[]` | - | `[]` |
