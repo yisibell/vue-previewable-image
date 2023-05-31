@@ -1,16 +1,15 @@
 import type { Component } from 'vue'
 import Viewer from 'viewerjs'
 
-type ViewerType = typeof Viewer
+type ViewerType = Viewer
 
 type ViewerOptions = Viewer.Options
 
 type ViewerOptionsTitle = Pick<ViewerOptions, 'title'>
 
-interface PreviewableSrcObject {
+interface PreviewableSrcObject extends Record<string | number, any> {
   src: string
   alt?: string
-  [key: string | number]: any
 }
 
 interface PreviewableImageElement
@@ -45,9 +44,19 @@ interface PreviewableImageProps {
   viewerTitle?: CustomViewerTitle
 }
 
+interface ImageViewerProps {
+  modelValue?: boolean
+  zIndex?: boolean | string
+  previewSrcList?: PreviewableSrcListItem[]
+  currentPreviewIndex?: number
+  viewerOptions?: ViewerOptions
+  viewerTitle?: CustomViewerTitle
+}
+
 type ViewerSwitchEvent = (index: number, viewer: ViewerType) => void
 
 declare const PreviewableImage: Component<{}, {}, {}, PreviewableImageProps>
+declare const ImageViewer: Component<{}, {}, {}, ImageViewerProps>
 
 interface PreviewableImageOptions {
   componentName?: string
@@ -56,6 +65,7 @@ interface PreviewableImageOptions {
 
 export {
   PreviewableImage,
+  ImageViewer,
   Viewer,
 
   // types

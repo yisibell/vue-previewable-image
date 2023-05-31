@@ -21,43 +21,39 @@
       ]"
       @click="handleImgView"
     />
+
+    <ImageViewer
+      v-if="initViewer"
+      v-model="showImageViewer"
+      v-model:current-preview-index="currentViewerIndex"
+      :preview-src-list="previewSrcList"
+      :viewer-options="viewerOptions"
+      :viewer-title="viewerTitle"
+      :z-index="zIndex"
+      @switch="handleSwitch"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  onMounted,
-  onUnmounted,
-  ref,
-  toRefs,
-  watch,
-} from 'vue'
-import type { PropType } from 'vue'
-import Viewer from 'viewerjs'
+import { defineComponent, toRefs, ref, computed } from 'vue'
 import { useImageLazyload } from '@/composables/useImageLazyload'
-
+import ImageViewer from './ImageViewer.vue'
+import type { PropType, ImgHTMLAttributes } from 'vue'
 import type {
   PreviewableSrcListItem,
   ViewerOptions,
   CustomViewerTitle,
-  PreviewableSrcObject,
-  PreviewableImageElement,
-  ViewerViewEvent,
+  ViewerType,
 } from '~~/types'
 
-function isPreviewableSrcString(
-  previewSrcList: PreviewableSrcListItem[]
-): previewSrcList is string[] {
-  if (typeof previewSrcList[0] === 'string') return true
-  return false
-}
-
 import 'viewerjs/dist/viewer.css'
-import { computed } from 'vue'
 
 export default defineComponent({
   name: 'PreviewableImage',
+  components: {
+    ImageViewer,
+  },
   props: {
     width: {
       type: String,
@@ -76,7 +72,7 @@ export default defineComponent({
       default: '',
     },
     referrerPolicy: {
-      type: String,
+      type: String as PropType<ImgHTMLAttributes['referrerpolicy']>,
       default: undefined,
     },
     fit: {
@@ -91,7 +87,6 @@ export default defineComponent({
       type: Array as PropType<PreviewableSrcListItem[]>,
       default: () => [],
     },
-    // support v-model
     currentPreviewIndex: {
       type: Number,
       default: 0,
@@ -113,6 +108,12 @@ export default defineComponent({
   setup(props, { emit }) {
     const { previewSrcList, currentPreviewIndex } = toRefs(props)
 
+    const imgStyleVars = computed(() => {
+      return {
+        '--img-object-fit': props.fit,
+      }
+    })
+
     const {
       lazySrc,
       lazyloadTrigger,
@@ -130,32 +131,25 @@ export default defineComponent({
       }
     )
 
-    const viewer = ref<Viewer>()
-
-    const imgStyleVars = computed(() => {
-      return {
-        '--img-object-fit': props.fit,
-      }
-    })
-
     const hasPreviewList = computed(
       () => previewSrcList.value && previewSrcList.value.length > 0
     )
 
-    const finalPreviewSrcList = computed<PreviewableSrcObject[]>(() => {
-      if (!hasPreviewList.value) return []
+    const initViewer = computed(() => {
+      if (!hasPreviewList.value) return false
+      // make sure the images in viewer could lazy load
+      if (props.lazy && !lazyloadSuccess.value) return false
 
-      if (isPreviewableSrcString(previewSrcList.value)) {
-        return previewSrcList.value.map((v) => {
-          return {
-            src: v,
-            alt: v,
-          }
-        })
-      } else {
-        return previewSrcList.value as PreviewableSrcObject[]
-      }
+      return true
     })
+
+    const showImageViewer = ref(false)
+
+    const handleImgView = () => {
+      if (hasPreviewList.value) {
+        showImageViewer.value = true
+      }
+    }
 
     const currentViewerIndex = computed({
       get() {
@@ -165,107 +159,24 @@ export default defineComponent({
         emit('update:currentPreviewIndex', value)
       },
     })
-    const PreviewListLength = computed(() => previewSrcList.value.length || 0)
 
-    const createPreviewableImages = () => {
-      const wrapper = document.createElement('div')
-
-      finalPreviewSrcList.value.forEach((imgDesc) => {
-        const img = new Image()
-
-        Object.keys(imgDesc).forEach((k) => {
-          ;(img as PreviewableImageElement)[k] = imgDesc[k]
-        })
-
-        wrapper.appendChild(img)
-      })
-
-      wrapper.addEventListener('view', (e) => {
-        const ev = e as unknown as ViewerViewEvent
-        currentViewerIndex.value = ev.detail.index
-
-        emit('switch', currentViewerIndex.value, viewer.value)
-      })
-
-      return wrapper
+    const handleSwitch = (index: number, viewer: ViewerType) => {
+      emit('switch', index, viewer)
     }
-
-    const titleFunc = computed(() => {
-      if (props.viewerTitle) {
-        return (img: PreviewableImageElement) => {
-          return (props.viewerTitle as CustomViewerTitle)(img, {
-            index: currentViewerIndex.value,
-            total: PreviewListLength.value,
-          })
-        }
-      }
-
-      return (img: PreviewableImageElement) => {
-        return `${img.alt} (${currentViewerIndex.value + 1}/${
-          PreviewListLength.value
-        })`
-      }
-    })
-
-    const finalViewerOptions = computed<ViewerOptions>(() => {
-      return Object.assign(
-        {
-          title: titleFunc.value,
-          zIndex: props.zIndex,
-        },
-        props.viewerOptions
-      )
-    })
-
-    const createViewer = () => {
-      if (!hasPreviewList.value) return
-
-      // make sure the images in viewer could lazy load
-      if (props.lazy && !lazyloadSuccess.value) return
-
-      viewer.value = new Viewer(
-        createPreviewableImages(),
-        finalViewerOptions.value
-      )
-    }
-
-    watch(
-      [lazyloadSuccess, previewSrcList],
-      () => {
-        createViewer()
-      },
-      {
-        deep: true,
-      }
-    )
-
-    const handleImgView = () => {
-      viewer.value?.view(currentViewerIndex.value)
-    }
-
-    const init = () => {
-      createViewer()
-    }
-
-    onMounted(() => {
-      init()
-    })
-
-    onUnmounted(() => {
-      viewer.value?.destroy()
-    })
 
     return {
       lazyloadTrigger,
-      PreviewListLength,
-      finalPreviewSrcList,
       imgStyleVars,
-      viewer,
-      handleImgView,
       hasPreviewList,
       lazySrc,
       lazyloading,
       lazyloadError,
+      lazyloadSuccess,
+      showImageViewer,
+      handleImgView,
+      currentViewerIndex,
+      handleSwitch,
+      initViewer,
     }
   },
 })
