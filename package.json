@@ -27,7 +27,8 @@
     "component",
     "viewerjs",
     "image",
-    "preview"
+    "preview",
+    "image-viewer"
   ],
   "repository": {
     "type": "git",

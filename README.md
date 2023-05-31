@@ -18,6 +18,7 @@ A **previewable** image Vue component based on <a href="https://github.com/fengy
 
 - :heavy_check_mark: Support preview image via `viewerjs`.
 - :heavy_check_mark: Support image lazy load.
+- :heavy_check_mark: Support using image viewer as a component via [ImageViewer](./docs/image-viewer-component.md).
 
 # Installation
 
@@ -77,15 +78,13 @@ const currentIndex = ref(0)
 
 ```
 
-You also can use `viewerjs` from this package:
+You also can use `viewerjs` from this package, This is equal to `import Viewer from 'viewerjs'`.
 
 ```js
 import { Viewer } from 'vue-previewable-image'
 ```
 
-This is equal to `import Viewer from 'viewerjs'`.
-
-Or, using image viewer as a component, See [ImageViewer](./docs/image-viewer-component.md).
+Or, you can using image viewer as a component, See [ImageViewer](./docs/image-viewer-component.md).
 
 
 ## Using via Vue plugin
