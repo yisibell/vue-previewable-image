@@ -11,6 +11,7 @@ const outDir = isBuildLib() ? 'dist' : 'example'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/vue-previewable-image/',
   plugins: [vue()],
   resolve: {
     alias: {
