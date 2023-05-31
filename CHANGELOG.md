@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v1.8.0
+
+
+### 🚀 Enhancements
+
+  - **v2:** Support vue3 (ba190de)
+  - Add image viewer component (d8f317f)
+
+### 🏡 Chore
+
+  - **release:** V2.1.0 (7599de8)
+  - **docs:** Update readme (64c9b8e)
+  - **release:** V2.1.1 (5c11b88)
+  - **docs:** Fix v3 docs (f848209)
+  - **release:** V2.1.2 (22ff3c5)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.7.0
 
 

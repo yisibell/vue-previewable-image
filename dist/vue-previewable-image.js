@@ -1,46 +1,188 @@
-import { ref as f, onMounted as P, onUnmounted as O, defineComponent as T, toRefs as $, computed as w, watch as R } from "vue";
-import V from "viewerjs";
+import { ref as p, onMounted as z, onUnmounted as S, defineComponent as b, toRefs as x, computed as w, watch as O } from "vue";
+import P from "viewerjs";
 import { default as G } from "viewerjs";
-const x = (t, e = !0, n, y) => {
-  const o = f(), u = f(""), d = f(!1), _ = f(!1), a = f(!1), l = f(!1), g = f(), v = () => {
-    g.value = new IntersectionObserver(
-      (i) => {
-        i.forEach((s) => {
-          const { intersectionRatio: c, target: p } = s;
-          if (c > 0 && !p.classList.contains("lazy-loaded")) {
-            const m = new Image();
-            l.value = !0, m.addEventListener("load", (h) => {
-              p.classList.add("lazy-loaded"), u.value = t, a.value = !0, d.value = !0, _.value = !1, l.value = !1, y && y(h);
-            }), m.addEventListener("error", (h) => {
-              p.classList.add("lazy-loaded"), a.value = !0, _.value = !0, d.value = !1, l.value = !1, n && n(h);
-            }), m.src = t;
+const C = (r, e = !0, i, l) => {
+  const o = p(), c = p(""), u = p(!1), f = p(!1), a = p(!1), n = p(!1), d = p(), _ = () => {
+    d.value = new IntersectionObserver(
+      (s) => {
+        s.forEach((g) => {
+          const { intersectionRatio: m, target: y } = g;
+          if (m > 0 && !y.classList.contains("lazy-loaded")) {
+            const t = new Image();
+            n.value = !0, t.addEventListener("load", (v) => {
+              y.classList.add("lazy-loaded"), c.value = r, a.value = !0, u.value = !0, f.value = !1, n.value = !1, l && l(v);
+            }), t.addEventListener("error", (v) => {
+              y.classList.add("lazy-loaded"), a.value = !0, f.value = !0, u.value = !1, n.value = !1, i && i(v);
+            }), t.src = r;
           }
         });
       },
       {
         threshold: [1]
       }
-    ), o.value && g.value.observe(o.value);
+    ), o.value && d.value.observe(o.value);
   };
-  return P(() => {
-    e ? v() : u.value = t;
-  }), O(() => {
-    var i;
-    o.value && ((i = g.value) == null || i.unobserve(o.value));
+  return z(() => {
+    e ? _() : c.value = r;
+  }), S(() => {
+    var s;
+    o.value && ((s = d.value) == null || s.unobserve(o.value));
   }), {
-    lazySrc: u,
-    lazyloadSuccess: d,
-    lazyloadError: _,
+    lazySrc: c,
+    lazyloadSuccess: u,
+    lazyloadError: f,
     lazyloaded: a,
-    lazyloading: l,
+    lazyloading: n,
     lazyloadTrigger: o
   };
 };
-function N(t) {
-  return typeof t[0] == "string";
+function E(r) {
+  return typeof r[0] == "string";
 }
-const F = T({
+const $ = b({
+  model: {
+    prop: "modelValue",
+    event: "update:modelValue"
+  },
+  props: {
+    modelValue: {
+      type: Boolean,
+      default: !1
+    },
+    currentPreviewIndex: {
+      type: Number,
+      default: 0
+    },
+    previewSrcList: {
+      type: Array,
+      default: () => []
+    },
+    viewerOptions: {
+      type: Object,
+      default: () => ({})
+    },
+    viewerTitle: {
+      type: Function,
+      default: void 0
+    },
+    zIndex: {
+      type: [Number, String],
+      default: 2015
+    }
+  },
+  emits: ["update:modelValue", "update:currentPreviewIndex", "switch"],
+  setup(r, { emit: e }) {
+    const { modelValue: i, previewSrcList: l, currentPreviewIndex: o } = x(r), c = w(
+      () => l.value && l.value.length > 0
+    ), u = p(), f = () => {
+      var t;
+      (t = u.value) == null || t.view(n.value);
+    };
+    O(i, (t) => {
+      t && f();
+    });
+    const a = w(() => c.value ? E(l.value) ? l.value.map((t) => ({
+      src: t,
+      alt: t
+    })) : l.value : []), n = w({
+      get() {
+        return o.value;
+      },
+      set(t) {
+        e("update:currentPreviewIndex", t);
+      }
+    }), d = w(() => l.value.length || 0), _ = () => {
+      const t = document.createElement("div");
+      return a.value.forEach((v) => {
+        const h = new Image();
+        Object.keys(v).forEach((I) => {
+          h[I] = v[I];
+        }), t.appendChild(h);
+      }), t.addEventListener("view", (v) => {
+        const h = v;
+        n.value = h.detail.index, e("switch", n.value, u.value);
+      }), t.addEventListener("hidden", (v) => {
+        console.log(v), e("update:modelValue", !1);
+      }), t;
+    }, s = w(() => r.viewerTitle ? (t) => r.viewerTitle(t, {
+      index: n.value,
+      total: d.value
+    }) : (t) => `${t.alt} (${n.value + 1}/${d.value})`), g = w(() => Object.assign(
+      {
+        title: s.value,
+        zIndex: r.zIndex
+      },
+      r.viewerOptions
+    )), m = () => {
+      c.value && (u.value = new P(
+        _(),
+        g.value
+      ), i.value && f());
+    }, y = () => {
+      m();
+    };
+    return z(() => {
+      y();
+    }), S(() => {
+      var t;
+      (t = u.value) == null || t.destroy();
+    }), {
+      hasPreviewList: c,
+      PreviewListLength: d,
+      finalPreviewSrcList: a,
+      viewer: u,
+      handleImgView: f
+    };
+  }
+});
+function L(r, e, i, l, o, c, u, f) {
+  var a = typeof r == "function" ? r.options : r;
+  e && (a.render = e, a.staticRenderFns = i, a._compiled = !0), l && (a.functional = !0), c && (a._scopeId = "data-v-" + c);
+  var n;
+  if (u ? (n = function(s) {
+    s = s || // cached call
+    this.$vnode && this.$vnode.ssrContext || // stateful
+    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ != "undefined" && (s = __VUE_SSR_CONTEXT__), o && o.call(this, s), s && s._registeredComponents && s._registeredComponents.add(u);
+  }, a._ssrRegister = n) : o && (n = f ? function() {
+    o.call(
+      this,
+      (a.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : o), n)
+    if (a.functional) {
+      a._injectStyles = n;
+      var d = a.render;
+      a.render = function(g, m) {
+        return n.call(m), d(g, m);
+      };
+    } else {
+      var _ = a.beforeCreate;
+      a.beforeCreate = _ ? [].concat(_, n) : [n];
+    }
+  return {
+    exports: r,
+    options: a
+  };
+}
+var T = function() {
+  var e = this, i = e._self._c;
+  return e._self._setupProxy, i("div", { staticClass: "image-viewer" });
+}, R = [], N = /* @__PURE__ */ L(
+  $,
+  T,
+  R,
+  !1,
+  null,
+  "ea9ad1dd",
+  null,
+  null
+);
+const F = N.exports;
+const j = b({
   name: "PreviewableImage",
+  components: {
+    ImageViewer: F
+  },
   props: {
     width: {
       type: String,
@@ -92,159 +234,95 @@ const F = T({
     }
   },
   emits: ["switch", "update:currentPreviewIndex", "load", "error"],
-  setup(t, { emit: e }) {
-    const { previewSrcList: n, currentPreviewIndex: y } = $(t), {
-      lazySrc: o,
+  setup(r, { emit: e }) {
+    const { previewSrcList: i, currentPreviewIndex: l } = x(r), o = w(() => ({
+      "--img-object-fit": r.fit
+    })), {
+      lazySrc: c,
       lazyloadTrigger: u,
-      lazyloading: d,
-      lazyloadError: _,
-      lazyloadSuccess: a
-    } = x(
-      t.src,
-      t.lazy,
-      (r) => {
-        e("load", r);
+      lazyloading: f,
+      lazyloadError: a,
+      lazyloadSuccess: n
+    } = C(
+      r.src,
+      r.lazy,
+      (t) => {
+        e("load", t);
       },
-      (r) => {
-        e("error", r);
+      (t) => {
+        e("error", t);
       }
-    ), l = f(), g = w(() => ({
-      "--img-object-fit": t.fit
-    })), v = w(
-      () => n.value && n.value.length > 0
-    ), i = w(() => v.value ? N(n.value) ? n.value.map((r) => ({
-      src: r,
-      alt: r
-    })) : n.value : []), s = w({
+    ), d = w(
+      () => i.value && i.value.length > 0
+    ), _ = w(() => !(!d.value || r.lazy && !n.value)), s = p(!1), g = () => {
+      d.value && (s.value = !0);
+    }, m = w({
       get() {
-        return y.value;
+        return l.value;
       },
-      set(r) {
-        e("update:currentPreviewIndex", r);
+      set(t) {
+        e("update:currentPreviewIndex", t);
       }
-    }), c = w(() => n.value.length || 0), p = () => {
-      const r = document.createElement("div");
-      return i.value.forEach((z) => {
-        const b = new Image();
-        Object.keys(z).forEach((I) => {
-          b[I] = z[I];
-        }), r.appendChild(b);
-      }), r.addEventListener("view", (z) => {
-        const b = z;
-        s.value = b.detail.index, e("switch", s.value, l.value);
-      }), r;
-    }, m = w(() => t.viewerTitle ? (r) => t.viewerTitle(r, {
-      index: s.value,
-      total: c.value
-    }) : (r) => `${r.alt} (${s.value + 1}/${c.value})`), h = w(() => Object.assign(
-      {
-        title: m.value,
-        zIndex: t.zIndex
-      },
-      t.viewerOptions
-    )), S = () => {
-      v.value && (t.lazy && !a.value || (l.value = new V(
-        p(),
-        h.value
-      )));
-    };
-    R(
-      [a, n],
-      () => {
-        S();
-      },
-      {
-        deep: !0
-      }
-    );
-    const C = () => {
-      var r;
-      (r = l.value) == null || r.view(s.value);
-    }, E = () => {
-      S();
-    };
-    return P(() => {
-      E();
-    }), O(() => {
-      var r;
-      (r = l.value) == null || r.destroy();
-    }), {
+    });
+    return {
       lazyloadTrigger: u,
-      PreviewListLength: c,
-      finalPreviewSrcList: i,
-      imgStyleVars: g,
-      viewer: l,
-      handleImgView: C,
-      hasPreviewList: v,
-      lazySrc: o,
-      lazyloading: d,
-      lazyloadError: _
+      imgStyleVars: o,
+      hasPreviewList: d,
+      lazySrc: c,
+      lazyloading: f,
+      lazyloadError: a,
+      lazyloadSuccess: n,
+      showImageViewer: s,
+      handleImgView: g,
+      currentViewerIndex: m,
+      handleSwitch: (t, v) => {
+        e("switch", t, v);
+      },
+      initViewer: _
     };
   }
 });
-function j(t, e, n, y, o, u, d, _) {
-  var a = typeof t == "function" ? t.options : t;
-  e && (a.render = e, a.staticRenderFns = n, a._compiled = !0), y && (a.functional = !0), u && (a._scopeId = "data-v-" + u);
-  var l;
-  if (d ? (l = function(i) {
-    i = i || // cached call
-    this.$vnode && this.$vnode.ssrContext || // stateful
-    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !i && typeof __VUE_SSR_CONTEXT__ < "u" && (i = __VUE_SSR_CONTEXT__), o && o.call(this, i), i && i._registeredComponents && i._registeredComponents.add(d);
-  }, a._ssrRegister = l) : o && (l = _ ? function() {
-    o.call(
-      this,
-      (a.functional ? this.parent : this).$root.$options.shadowRoot
-    );
-  } : o), l)
-    if (a.functional) {
-      a._injectStyles = l;
-      var g = a.render;
-      a.render = function(s, c) {
-        return l.call(c), g(s, c);
-      };
-    } else {
-      var v = a.beforeCreate;
-      a.beforeCreate = v ? [].concat(v, l) : [l];
-    }
-  return {
-    exports: t,
-    options: a
-  };
-}
 var U = function() {
-  var e = this, n = e._self._c;
-  return e._self._setupProxy, n("div", { ref: "lazyloadTrigger", staticClass: "previewable-image", style: [{ width: e.width, height: e.height }, e.imgStyleVars] }, [e.lazy && e.lazyloading ? n("div", { staticClass: "previewable-image__placeholder" }, [e._t("placeholder", function() {
+  var e = this, i = e._self._c;
+  return e._self._setupProxy, i("div", { ref: "lazyloadTrigger", staticClass: "previewable-image", style: [{ width: e.width, height: e.height }, e.imgStyleVars] }, [e.lazy && e.lazyloading ? i("div", { staticClass: "previewable-image__placeholder" }, [e._t("placeholder", function() {
     return [e._v("Loading...")];
-  })], 2) : e.lazy && e.lazyloadError ? n("div", { staticClass: "previewable-image__error" }, [e._t("error", function() {
+  })], 2) : e.lazy && e.lazyloadError ? i("div", { staticClass: "previewable-image__error" }, [e._t("error", function() {
     return [e._v("Load Error")];
-  })], 2) : n("img", { class: [
+  })], 2) : i("img", { class: [
     "previewable-image__inner",
     { "previewable-image__preview": e.hasPreviewList }
-  ], attrs: { src: e.lazySrc, alt: e.alt, referrerpolicy: e.referrerPolicy }, on: { click: e.handleImgView } })]);
-}, X = [], A = /* @__PURE__ */ j(
-  F,
+  ], attrs: { src: e.lazySrc, alt: e.alt, referrerpolicy: e.referrerPolicy }, on: { click: e.handleImgView } }), e.initViewer ? i("ImageViewer", { attrs: { "current-preview-index": e.currentViewerIndex, "preview-src-list": e.previewSrcList, "viewer-options": e.viewerOptions, "viewer-title": e.viewerTitle, "z-index": e.zIndex }, on: { "update:currentPreviewIndex": function(l) {
+    e.currentViewerIndex = l;
+  }, "update:current-preview-index": function(l) {
+    e.currentViewerIndex = l;
+  }, switch: e.handleSwitch }, model: { value: e.showImageViewer, callback: function(l) {
+    e.showImageViewer = l;
+  }, expression: "showImageViewer" } }) : e._e()], 1);
+}, A = [], B = /* @__PURE__ */ L(
+  j,
   U,
-  X,
+  A,
   !1,
   null,
   null,
   null,
   null
 );
-const L = A.exports, B = (t, e) => {
-  const n = Object.assign(
+const V = B.exports, X = (r, e) => {
+  const i = Object.assign(
     {
-      componentName: L.name,
+      componentName: V.name,
       defaultViewerOptions: {}
     },
     e
   );
-  t.component(n.componentName, L), V.setDefaults(n.defaultViewerOptions);
-}, k = {
-  install: B
+  r.component(i.componentName, V), P.setDefaults(i.defaultViewerOptions);
+}, W = {
+  install: X
 };
 export {
-  L as PreviewableImage,
+  F as ImageViewer,
+  V as PreviewableImage,
   G as Viewer,
-  k as default
+  W as default
 };
