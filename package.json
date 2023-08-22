@@ -23,13 +23,18 @@
     "email": "yisiwings@163.com"
   },
   "keywords": [
+    "aidol",
+    "aidol-image",
+    "viewer",
     "vue",
+    "vue-image",
+    "el-image",
     "component",
     "viewerjs",
     "image",
     "preview",
-    "image-viewer",
-    "aidol-image"
+    "previewable",
+    "image-viewer"
   ],
   "repository": {
     "type": "git",
