@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v2.2.2
+
+
+### 🏡 Chore
+
+  - **example:** Add example deploy (b2736af)
+  - Ignore example (9561fe9)
+  - **example:** Fix site base url (c87e4c3)
+  - Using pnpm instead of yarn (22b67d7)
+  - Update readme (8445810)
+  - **example:** Fix example (6cda92e)
+  - Add aidol-image keywords (e922211)
+  - Fix release scripts (80fc40f)
+  - Update keywords (32b81c6)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.2.0
 
 
