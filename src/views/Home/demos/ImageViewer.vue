@@ -14,12 +14,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
-import { ImageViewer } from 'vue-previewable-image'
-import type {
-  CustomViewerTitle,
-  ViewerSwitchEvent,
-} from 'vue-previewable-image'
+import { ImageViewer } from '@/lib/main'
+import type { CustomViewerTitle, ViewerSwitchEvent } from '@@/types'
 
 const srcList = [
   'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',

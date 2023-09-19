@@ -15,9 +15,9 @@
           component.
         </div>
         <div class="home-demos__code">
-          <pre
-            class="language-markup"
-          ><code>{{ PreviewableImageDemoCode }}</code></pre>
+          <pre class="language-markup">
+            <code>{{ formatLibName(PreviewableImageDemoCode)  }}</code>
+          </pre>
         </div>
         <div class="home-demos__preview"><PreviewableImageDemo /></div>
       </div>
@@ -29,9 +29,9 @@
           component.
         </div>
         <div class="home-demos__code">
-          <pre
-            class="language-markup"
-          ><code>{{ ImageViewerDemoCode }}</code></pre>
+          <pre class="language-markup">
+            <code>{{ formatLibName(ImageViewerDemoCode)  }}</code>
+          </pre>
         </div>
         <div class="home-demos__preview"><ImageViewerDemo /></div>
       </div>
@@ -41,11 +41,11 @@
 
 <script lang="ts" setup>
 import 'prismjs'
-import 'vue-previewable-image/dist/style.css'
 import PreviewableImageDemo from './demos/PreviewableImage.vue'
 import PreviewableImageDemoCode from './demos/PreviewableImage.vue?raw'
 import ImageViewerDemo from './demos/ImageViewer.vue'
 import ImageViewerDemoCode from './demos/ImageViewer.vue?raw'
+import { formatLibName } from '@/utils'
 </script>
 
 <script lang="ts">

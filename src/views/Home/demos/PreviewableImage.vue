@@ -13,12 +13,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
-import { PreviewableImage } from 'vue-previewable-image'
-import type {
-  CustomViewerTitle,
-  ViewerSwitchEvent,
-} from 'vue-previewable-image'
+import { PreviewableImage } from '@/lib/main'
+import type { CustomViewerTitle, ViewerSwitchEvent } from '@@/types'
 
 const src =
   'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
