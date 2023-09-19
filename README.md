@@ -132,7 +132,7 @@ app.use(PreviewableImage, {
 | `referrerPolicy` | The `referrerPolicy` of **img** | `string` | - | `undefined` |
 | `lazy` | Whether to enable image lazy load | `boolean` | - | `true` |
 | `zIndex` | Define the CSS `z-index` value of the viewer in modal mode | `number` or `string` | - | `2015` |
-| `fit` | The `object-ft` of **img** | `string` | `fill / contain / cover / none / scale-down` | `fill` |
+| `fit` | The `object-fit` of **img** | `string` | `fill / contain / cover / none / scale-down` | `fill` |
 | `previewSrcList` | Define your previewable image list  | `string[]` or `{ src: string; alt: string}[]` | - | `[]` |
 | `currentPreviewIndex` | Current preview image shown index, support `v-model`  | `number` | - | `0` |
 | `viewerOptions` | Define [viewerjs Options](https://github.com/fengyuanchen/viewerjs) | - | - | `{}` |
