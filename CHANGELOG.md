@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v2.3.0
+
+[compare changes](https://github.com/yisibell/vue-previewable-image/compare/v2.2.2...v2.3.0)
+
+### 🚀 Enhancements
+
+- Upgrade typescript to v5 and other all  non-major deps ([0938a6a](https://github.com/yisibell/vue-previewable-image/commit/0938a6a))
+
+### 🏡 Chore
+
+- **docs:** Fix readme ([85c5e2d](https://github.com/yisibell/vue-previewable-image/commit/85c5e2d))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.2.2
 
 
