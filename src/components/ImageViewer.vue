@@ -31,6 +31,7 @@ function isPreviewableSrcString(
 }
 
 export default defineComponent({
+  name: 'ImageViewer',
   model: {
     prop: 'modelValue',
     event: 'update:modelValue',
