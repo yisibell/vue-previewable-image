@@ -1,6 +1,51 @@
 # Changelog
 
 
+## v1.9.0
+
+
+### 🚀 Enhancements
+
+  - **v2:** Support vue3 (ba190de)
+  - Add image viewer component (d8f317f)
+  - Add image viewer component (a55e311)
+  - Upgrade typescript to v5 and other all  non-major deps (0938a6a)
+
+### 🩹 Fixes
+
+  - ImageViewer export error (89bdeaa)
+
+### 🏡 Chore
+
+  - **release:** V2.1.0 (7599de8)
+  - **docs:** Update readme (64c9b8e)
+  - **release:** V2.1.1 (5c11b88)
+  - **docs:** Fix v3 docs (f848209)
+  - **release:** V2.1.2 (22ff3c5)
+  - **release:** V1.8.0 (1cc0ed5)
+  - **docs:** Update readme (4e14a7e)
+  - **release:** V1.8.1 (1285d9c)
+  - **docs:** Update readme (2cf5a71)
+  - **release:** V1.8.2 (ac1fadf)
+  - **release:** V2.2.0 (f34dc9f)
+  - **example:** Add example deploy (b2736af)
+  - Ignore example (9561fe9)
+  - **example:** Fix site base url (c87e4c3)
+  - Using pnpm instead of yarn (22b67d7)
+  - Update readme (8445810)
+  - **example:** Fix example (6cda92e)
+  - Add aidol-image keywords (e922211)
+  - Fix release scripts (80fc40f)
+  - Update keywords (32b81c6)
+  - **release:** V2.2.2 (8dd5c3b)
+  - **docs:** Fix readme (85c5e2d)
+  - **docs:** Fix readme (de555a0)
+  - **release:** V2.3.0 (735c7db)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.8.2
 
 

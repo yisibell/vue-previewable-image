@@ -2,17 +2,17 @@ import { ref as p, onMounted as z, onUnmounted as S, defineComponent as b, toRef
 import P from "viewerjs";
 import { default as G } from "viewerjs";
 const C = (r, e = !0, i, l) => {
-  const o = p(), c = p(""), u = p(!1), f = p(!1), a = p(!1), n = p(!1), d = p(), _ = () => {
+  const o = p(), c = p(""), u = p(!1), f = p(!1), n = p(!1), a = p(!1), d = p(), _ = () => {
     d.value = new IntersectionObserver(
       (s) => {
         s.forEach((g) => {
           const { intersectionRatio: m, target: y } = g;
           if (m > 0 && !y.classList.contains("lazy-loaded")) {
             const t = new Image();
-            n.value = !0, t.addEventListener("load", (v) => {
-              y.classList.add("lazy-loaded"), c.value = r, a.value = !0, u.value = !0, f.value = !1, n.value = !1, l && l(v);
+            a.value = !0, t.addEventListener("load", (v) => {
+              y.classList.add("lazy-loaded"), c.value = r, n.value = !0, u.value = !0, f.value = !1, a.value = !1, l && l(v);
             }), t.addEventListener("error", (v) => {
-              y.classList.add("lazy-loaded"), a.value = !0, f.value = !0, u.value = !1, n.value = !1, i && i(v);
+              y.classList.add("lazy-loaded"), n.value = !0, f.value = !0, u.value = !1, a.value = !1, i && i(v);
             }), t.src = r;
           }
         });
@@ -31,8 +31,8 @@ const C = (r, e = !0, i, l) => {
     lazySrc: c,
     lazyloadSuccess: u,
     lazyloadError: f,
-    lazyloaded: a,
-    lazyloading: n,
+    lazyloaded: n,
+    lazyloading: a,
     lazyloadTrigger: o
   };
 };
@@ -40,6 +40,7 @@ function E(r) {
   return typeof r[0] == "string";
 }
 const $ = b({
+  name: "ImageViewer",
   model: {
     prop: "modelValue",
     event: "update:modelValue"
@@ -76,15 +77,15 @@ const $ = b({
       () => l.value && l.value.length > 0
     ), u = p(), f = () => {
       var t;
-      (t = u.value) == null || t.view(n.value);
+      (t = u.value) == null || t.view(a.value);
     };
     O(i, (t) => {
       t && f();
     });
-    const a = w(() => c.value ? E(l.value) ? l.value.map((t) => ({
+    const n = w(() => c.value ? E(l.value) ? l.value.map((t) => ({
       src: t,
       alt: t
-    })) : l.value : []), n = w({
+    })) : l.value : []), a = w({
       get() {
         return o.value;
       },
@@ -93,21 +94,21 @@ const $ = b({
       }
     }), d = w(() => l.value.length || 0), _ = () => {
       const t = document.createElement("div");
-      return a.value.forEach((v) => {
+      return n.value.forEach((v) => {
         const h = new Image();
         Object.keys(v).forEach((I) => {
           h[I] = v[I];
         }), t.appendChild(h);
       }), t.addEventListener("view", (v) => {
         const h = v;
-        n.value = h.detail.index, e("switch", n.value, u.value);
+        a.value = h.detail.index, e("switch", a.value, u.value);
       }), t.addEventListener("hidden", (v) => {
         console.log(v), e("update:modelValue", !1);
       }), t;
     }, s = w(() => r.viewerTitle ? (t) => r.viewerTitle(t, {
-      index: n.value,
+      index: a.value,
       total: d.value
-    }) : (t) => `${t.alt} (${n.value + 1}/${d.value})`), g = w(() => Object.assign(
+    }) : (t) => `${t.alt} (${a.value + 1}/${d.value})`), g = w(() => Object.assign(
       {
         title: s.value,
         zIndex: r.zIndex
@@ -129,39 +130,39 @@ const $ = b({
     }), {
       hasPreviewList: c,
       PreviewListLength: d,
-      finalPreviewSrcList: a,
+      finalPreviewSrcList: n,
       viewer: u,
       handleImgView: f
     };
   }
 });
 function L(r, e, i, l, o, c, u, f) {
-  var a = typeof r == "function" ? r.options : r;
-  e && (a.render = e, a.staticRenderFns = i, a._compiled = !0), l && (a.functional = !0), c && (a._scopeId = "data-v-" + c);
-  var n;
-  if (u ? (n = function(s) {
+  var n = typeof r == "function" ? r.options : r;
+  e && (n.render = e, n.staticRenderFns = i, n._compiled = !0), l && (n.functional = !0), c && (n._scopeId = "data-v-" + c);
+  var a;
+  if (u ? (a = function(s) {
     s = s || // cached call
     this.$vnode && this.$vnode.ssrContext || // stateful
     this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ != "undefined" && (s = __VUE_SSR_CONTEXT__), o && o.call(this, s), s && s._registeredComponents && s._registeredComponents.add(u);
-  }, a._ssrRegister = n) : o && (n = f ? function() {
+  }, n._ssrRegister = a) : o && (a = f ? function() {
     o.call(
       this,
-      (a.functional ? this.parent : this).$root.$options.shadowRoot
+      (n.functional ? this.parent : this).$root.$options.shadowRoot
     );
-  } : o), n)
-    if (a.functional) {
-      a._injectStyles = n;
-      var d = a.render;
-      a.render = function(g, m) {
-        return n.call(m), d(g, m);
+  } : o), a)
+    if (n.functional) {
+      n._injectStyles = a;
+      var d = n.render;
+      n.render = function(g, m) {
+        return a.call(m), d(g, m);
       };
     } else {
-      var _ = a.beforeCreate;
-      a.beforeCreate = _ ? [].concat(_, n) : [n];
+      var _ = n.beforeCreate;
+      n.beforeCreate = _ ? [].concat(_, a) : [a];
     }
   return {
     exports: r,
-    options: a
+    options: n
   };
 }
 var T = function() {
@@ -173,7 +174,7 @@ var T = function() {
   R,
   !1,
   null,
-  "ea9ad1dd",
+  "d75f567f",
   null,
   null
 );
@@ -241,8 +242,8 @@ const j = b({
       lazySrc: c,
       lazyloadTrigger: u,
       lazyloading: f,
-      lazyloadError: a,
-      lazyloadSuccess: n
+      lazyloadError: n,
+      lazyloadSuccess: a
     } = C(
       r.src,
       r.lazy,
@@ -254,7 +255,7 @@ const j = b({
       }
     ), d = w(
       () => i.value && i.value.length > 0
-    ), _ = w(() => !(!d.value || r.lazy && !n.value)), s = p(!1), g = () => {
+    ), _ = w(() => !(!d.value || r.lazy && !a.value)), s = p(!1), g = () => {
       d.value && (s.value = !0);
     }, m = w({
       get() {
@@ -270,8 +271,8 @@ const j = b({
       hasPreviewList: d,
       lazySrc: c,
       lazyloading: f,
-      lazyloadError: a,
-      lazyloadSuccess: n,
+      lazyloadError: n,
+      lazyloadSuccess: a,
       showImageViewer: s,
       handleImgView: g,
       currentViewerIndex: m,
