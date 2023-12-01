@@ -2,17 +2,17 @@ import { ref as p, onMounted as z, onUnmounted as S, defineComponent as b, toRef
 import P from "viewerjs";
 import { default as G } from "viewerjs";
 const C = (r, e = !0, i, l) => {
-  const o = p(), c = p(""), u = p(!1), f = p(!1), n = p(!1), a = p(!1), d = p(), _ = () => {
+  const o = p(), c = p(""), u = p(!1), v = p(!1), n = p(!1), a = p(!1), d = p(), _ = () => {
     d.value = new IntersectionObserver(
       (s) => {
         s.forEach((g) => {
           const { intersectionRatio: m, target: y } = g;
           if (m > 0 && !y.classList.contains("lazy-loaded")) {
             const t = new Image();
-            a.value = !0, t.addEventListener("load", (v) => {
-              y.classList.add("lazy-loaded"), c.value = r, n.value = !0, u.value = !0, f.value = !1, a.value = !1, l && l(v);
-            }), t.addEventListener("error", (v) => {
-              y.classList.add("lazy-loaded"), n.value = !0, f.value = !0, u.value = !1, a.value = !1, i && i(v);
+            a.value = !0, t.addEventListener("load", (f) => {
+              y.classList.add("lazy-loaded"), c.value = r, n.value = !0, u.value = !0, v.value = !1, a.value = !1, l && l(f);
+            }), t.addEventListener("error", (f) => {
+              y.classList.add("lazy-loaded"), n.value = !0, v.value = !0, u.value = !1, a.value = !1, i && i(f);
             }), t.src = r;
           }
         });
@@ -30,7 +30,7 @@ const C = (r, e = !0, i, l) => {
   }), {
     lazySrc: c,
     lazyloadSuccess: u,
-    lazyloadError: f,
+    lazyloadError: v,
     lazyloaded: n,
     lazyloading: a,
     lazyloadTrigger: o
@@ -75,12 +75,12 @@ const $ = b({
   setup(r, { emit: e }) {
     const { modelValue: i, previewSrcList: l, currentPreviewIndex: o } = x(r), c = w(
       () => l.value && l.value.length > 0
-    ), u = p(), f = () => {
+    ), u = p(), v = () => {
       var t;
       (t = u.value) == null || t.view(a.value);
     };
     O(i, (t) => {
-      t && f();
+      t && v();
     });
     const n = w(() => c.value ? E(l.value) ? l.value.map((t) => ({
       src: t,
@@ -94,16 +94,16 @@ const $ = b({
       }
     }), d = w(() => l.value.length || 0), _ = () => {
       const t = document.createElement("div");
-      return n.value.forEach((v) => {
+      return n.value.forEach((f) => {
         const h = new Image();
-        Object.keys(v).forEach((I) => {
-          h[I] = v[I];
+        Object.keys(f).forEach((I) => {
+          h[I] = f[I];
         }), t.appendChild(h);
-      }), t.addEventListener("view", (v) => {
-        const h = v;
+      }), t.addEventListener("view", (f) => {
+        const h = f;
         a.value = h.detail.index, e("switch", a.value, u.value);
-      }), t.addEventListener("hidden", (v) => {
-        console.log(v), e("update:modelValue", !1);
+      }), t.addEventListener("hidden", () => {
+        e("update:modelValue", !1);
       }), t;
     }, s = w(() => r.viewerTitle ? (t) => r.viewerTitle(t, {
       index: a.value,
@@ -118,7 +118,7 @@ const $ = b({
       c.value && (u.value = new P(
         _(),
         g.value
-      ), i.value && f());
+      ), i.value && v());
     }, y = () => {
       m();
     };
@@ -132,11 +132,11 @@ const $ = b({
       PreviewListLength: d,
       finalPreviewSrcList: n,
       viewer: u,
-      handleImgView: f
+      handleImgView: v
     };
   }
 });
-function L(r, e, i, l, o, c, u, f) {
+function L(r, e, i, l, o, c, u, v) {
   var n = typeof r == "function" ? r.options : r;
   e && (n.render = e, n.staticRenderFns = i, n._compiled = !0), l && (n.functional = !0), c && (n._scopeId = "data-v-" + c);
   var a;
@@ -144,7 +144,7 @@ function L(r, e, i, l, o, c, u, f) {
     s = s || // cached call
     this.$vnode && this.$vnode.ssrContext || // stateful
     this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ != "undefined" && (s = __VUE_SSR_CONTEXT__), o && o.call(this, s), s && s._registeredComponents && s._registeredComponents.add(u);
-  }, n._ssrRegister = a) : o && (a = f ? function() {
+  }, n._ssrRegister = a) : o && (a = v ? function() {
     o.call(
       this,
       (n.functional ? this.parent : this).$root.$options.shadowRoot
@@ -174,7 +174,7 @@ var T = function() {
   R,
   !1,
   null,
-  "d75f567f",
+  "5d94f490",
   null,
   null
 );
@@ -241,7 +241,7 @@ const j = b({
     })), {
       lazySrc: c,
       lazyloadTrigger: u,
-      lazyloading: f,
+      lazyloading: v,
       lazyloadError: n,
       lazyloadSuccess: a
     } = C(
@@ -270,14 +270,14 @@ const j = b({
       imgStyleVars: o,
       hasPreviewList: d,
       lazySrc: c,
-      lazyloading: f,
+      lazyloading: v,
       lazyloadError: n,
       lazyloadSuccess: a,
       showImageViewer: s,
       handleImgView: g,
       currentViewerIndex: m,
-      handleSwitch: (t, v) => {
-        e("switch", t, v);
+      handleSwitch: (t, f) => {
+        e("switch", t, f);
       },
       initViewer: _
     };
