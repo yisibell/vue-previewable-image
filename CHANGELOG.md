@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.9.1
+
+[compare changes](https://github.com/yisibell/vue-previewable-image/compare/v1.9.0...v1.9.1)
+
+### 🏡 Chore
+
+- Upgrade all none-major deps in 1.x ([26230e7](https://github.com/yisibell/vue-previewable-image/commit/26230e7))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.9.0
 
 
