@@ -121,8 +121,7 @@ export default defineComponent({
         emit('switch', currentViewerIndex.value, viewer.value)
       })
 
-      wrapper.addEventListener('hidden', (e) => {
-        console.log(e)
+      wrapper.addEventListener('hidden', () => {
         emit('update:modelValue', false)
       })
 
