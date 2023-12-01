@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.9.2
+
+[compare changes](https://github.com/yisibell/vue-previewable-image/compare/v1.9.1...v1.9.2)
+
+### 📖 Documentation
+
+- Update readme ([235a59c](https://github.com/yisibell/vue-previewable-image/commit/235a59c))
+
+### 🏡 Chore
+
+- Update release script ([18605a2](https://github.com/yisibell/vue-previewable-image/commit/18605a2))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.9.1
 
 [compare changes](https://github.com/yisibell/vue-previewable-image/compare/v1.9.0...v1.9.1)
