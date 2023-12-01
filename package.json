@@ -45,7 +45,7 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "release": "npm run build-only && changelogen --release && npm publish --access=public && git push --follow-tags"
+    "release": "npm run build-only && changelogen --release && npm publish --access=public --tag=legacy && git push --follow-tags"
   },
   "dependencies": {
     "viewerjs": "^1.11.6"

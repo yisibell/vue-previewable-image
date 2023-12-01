@@ -14,6 +14,8 @@ A **previewable** image Vue component based on <a href="https://github.com/fengy
 
 > :warning: TIPS: `vue-previewable-image` needs **Vue** verison to `2.7.0+`.
 
+- [✨ &nbsp;Release Notes](./CHANGELOG.md)
+
 # Features
 
 - :heavy_check_mark: Support preview image via `viewerjs`.
@@ -143,7 +145,3 @@ Vue.use(PreviewableImage, {
 | :----: | :----: |
 | `placeholder` | Define the placeholder content to display when image is not loaded |
 | `error` |  Define the content to display when image load error |
-
-# CHANGE LOG
-
-SEE <a href="./CHANGELOG.md" target="_blank">CHANGE LOG</a>.
