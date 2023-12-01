@@ -1,5 +1,7 @@
 # Image Viewer Component
 
+> Added in v1.8.0
+
 # Usage
 
 ```vue
