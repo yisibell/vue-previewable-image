@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.3.1
+
+[compare changes](https://github.com/yisibell/vue-previewable-image/compare/v2.3.0...v2.3.1)
+
+### 🏡 Chore
+
+- Sync dist ([5a30ecc](https://github.com/yisibell/vue-previewable-image/commit/5a30ecc))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.3.0
 
 [compare changes](https://github.com/yisibell/vue-previewable-image/compare/v2.2.2...v2.3.0)
