@@ -1,14 +1,12 @@
 <template>
-  <div class="">
-    <PreviewableImage
-      v-model:current-preview-index="currentIndex"
-      :src="src"
-      :preview-src-list="srcList"
-      :viewer-title="viewerTitle"
-      width="100px"
-      @switch="handleSwitch"
-    />
-  </div>
+  <PreviewableImage
+    v-model:current-preview-index="currentIndex"
+    :src="src"
+    :preview-src-list="srcList"
+    :viewer-title="viewerTitle"
+    width="100px"
+    @switch="handleSwitch"
+  />
 </template>
 
 <script setup lang="ts">

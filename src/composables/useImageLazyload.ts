@@ -4,7 +4,7 @@ export const useImageLazyload = (
   src: string,
   lazy = true,
   errorCallback?: (e: Event) => void,
-  loadCallback?: (e: Event) => void
+  loadCallback?: (e: Event) => void,
 ) => {
   const lazyloadTrigger = ref<HTMLElement>()
   const lazySrc = ref('')
@@ -56,7 +56,7 @@ export const useImageLazyload = (
       },
       {
         threshold: [1],
-      }
+      },
     )
 
     lazyloadTrigger.value && ob.value.observe(lazyloadTrigger.value)

@@ -128,11 +128,11 @@ export default defineComponent({
       },
       (e) => {
         emit('error', e)
-      }
+      },
     )
 
     const hasPreviewList = computed(
-      () => previewSrcList.value && previewSrcList.value.length > 0
+      () => previewSrcList.value && previewSrcList.value.length > 0,
     )
 
     const initViewer = computed(() => {
