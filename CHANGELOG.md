@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v2.4.0
+
+[compare changes](https://github.com/yisibell/vue-previewable-image/compare/v2.3.1...v2.4.0)
+
+### 🚀 Enhancements
+
+- Upgrade all deps to latest version and update example site ([3b7640d](https://github.com/yisibell/vue-previewable-image/commit/3b7640d))
+
+### 🏡 Chore
+
+- Sync dist ([c3a8083](https://github.com/yisibell/vue-previewable-image/commit/c3a8083))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.3.1
 
 [compare changes](https://github.com/yisibell/vue-previewable-image/compare/v2.3.0...v2.3.1)
