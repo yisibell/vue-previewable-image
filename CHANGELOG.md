@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.10.0
+
+[compare changes](https://github.com/yisibell/vue-previewable-image/compare/v1.9.2...v1.10.0)
+
+### 🚀 Enhancements
+
+- Upgrade all deps to latest version ([74ced96](https://github.com/yisibell/vue-previewable-image/commit/74ced96))
+
+### 🏡 Chore
+
+- Ignore output dir ([fa9f4d3](https://github.com/yisibell/vue-previewable-image/commit/fa9f4d3))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.9.2
 
 [compare changes](https://github.com/yisibell/vue-previewable-image/compare/v1.9.1...v1.9.2)
