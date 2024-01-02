@@ -16,7 +16,7 @@
       </template>
     </DemoPanel>
 
-    <DemoPanel title="ImageViewer Usage" :initial-expand="true">
+    <DemoPanel title="ImageViewer Usage" :initial-expand="false">
       <template #description>
         Using
         <code class="language-markup"> {{ `<ImageViewer />` }} </code>
@@ -31,17 +31,38 @@
         </pre>
       </template>
     </DemoPanel>
+
+    <DemoPanel title="Image Lazy Loading" :initial-expand="false">
+      <template #description>
+        Set
+        <code class="language-markup"> lazy </code> to
+        <code class="language-markup"> true </code> (default) to enable image
+        lazy loading.
+      </template>
+
+      <ImageLazyLoadDemo />
+
+      <template #code>
+        <pre class="language-markup">
+          <code>{{ formatLibName(ImageLazyLoadDemoCode)  }}</code>
+        </pre>
+      </template>
+    </DemoPanel>
   </main>
 </template>
 
 <script lang="ts" setup>
+import { formatLibName } from '@/utils'
+import { onMounted } from 'vue'
 import prismjs from 'prismjs'
 import PreviewableImageDemo from './demos/PreviewableImage.vue'
 import PreviewableImageDemoCode from './demos/PreviewableImage.vue?raw'
+
 import ImageViewerDemo from './demos/ImageViewer.vue'
 import ImageViewerDemoCode from './demos/ImageViewer.vue?raw'
-import { formatLibName } from '@/utils'
-import { onMounted } from 'vue'
+
+import ImageLazyLoadDemo from './demos/ImageLazyLoad.vue'
+import ImageLazyLoadDemoCode from './demos/ImageLazyLoad.vue?raw'
 
 onMounted(() => {
   prismjs.highlightAll()
