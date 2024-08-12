@@ -24,7 +24,7 @@ import type {
 import Viewer from 'viewerjs'
 
 function isPreviewableSrcString(
-  previewSrcList: PreviewableSrcListItem[]
+  previewSrcList: PreviewableSrcListItem[],
 ): previewSrcList is string[] {
   if (typeof previewSrcList[0] === 'string') return true
   return false
@@ -67,7 +67,7 @@ export default defineComponent({
     const { modelValue, previewSrcList, currentPreviewIndex } = toRefs(props)
 
     const hasPreviewList = computed(
-      () => previewSrcList.value && previewSrcList.value.length > 0
+      () => previewSrcList.value && previewSrcList.value.length > 0,
     )
 
     const viewer = ref<Viewer>()
@@ -156,7 +156,7 @@ export default defineComponent({
           title: titleFunc.value,
           zIndex: props.zIndex,
         },
-        props.viewerOptions
+        props.viewerOptions,
       )
     })
 
@@ -165,7 +165,7 @@ export default defineComponent({
 
       viewer.value = new Viewer(
         createPreviewableImages(),
-        finalViewerOptions.value
+        finalViewerOptions.value,
       )
 
       if (modelValue.value) {
@@ -176,6 +176,14 @@ export default defineComponent({
     const init = () => {
       createViewer()
     }
+
+    watch(
+      [() => props.previewSrcList, () => props.zIndex, titleFunc],
+      () => {
+        init()
+      },
+      { deep: true },
+    )
 
     onMounted(() => {
       init()
