@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v2.4.1
+
+[compare changes](https://github.com/yisibell/vue-previewable-image/compare/v2.4.0...v2.4.1)
+
+### 🩹 Fixes
+
+- Reinit viewer when preview src list, and options changed ([62460c8](https://github.com/yisibell/vue-previewable-image/commit/62460c8))
+
+### 🏡 Chore
+
+- Update lazy load example ([382ae6b](https://github.com/yisibell/vue-previewable-image/commit/382ae6b))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.4.0
 
 [compare changes](https://github.com/yisibell/vue-previewable-image/compare/v2.3.1...v2.4.0)
