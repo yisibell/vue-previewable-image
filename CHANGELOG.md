@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.10.1
+
+[compare changes](https://github.com/yisibell/vue-previewable-image/compare/v1.10.0...v1.10.1)
+
+### 🩹 Fixes
+
+- Reinit viewer when previewSrcList,z-index and title changed ([2eee721](https://github.com/yisibell/vue-previewable-image/commit/2eee721))
+- Reinit viewer when preview src list, and options changed ([6af4ceb](https://github.com/yisibell/vue-previewable-image/commit/6af4ceb))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.10.0
 
 [compare changes](https://github.com/yisibell/vue-previewable-image/compare/v1.9.2...v1.10.0)
