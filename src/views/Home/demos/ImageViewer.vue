@@ -9,6 +9,9 @@
     />
 
     <button @click="showViewer = true">Show image viewer</button>
+    <button @click="handleDynamicViewer">
+      Show image viewer via dynamic src
+    </button>
   </div>
 </template>
 
@@ -17,11 +20,11 @@ import { ref } from 'vue'
 import { ImageViewer } from '@/lib/main'
 import type { CustomViewerTitle, ViewerSwitchEvent } from '@@/types'
 
-const srcList = [
+const srcList = ref([
   'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
   'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg',
   'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-]
+])
 
 const viewerTitle: CustomViewerTitle = (img, { index, total }) => {
   console.log('img:', img)
@@ -35,4 +38,9 @@ const handleSwitch: ViewerSwitchEvent = (index, viewer) => {
 const currentIndex = ref(0)
 
 const showViewer = ref(false)
+
+const handleDynamicViewer = () => {
+  srcList.value.unshift('https://picsum.photos/600/250?2')
+  showViewer.value = true
+}
 </script>

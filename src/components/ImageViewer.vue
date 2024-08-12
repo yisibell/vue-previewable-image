@@ -172,6 +172,14 @@ export default defineComponent({
       createViewer()
     }
 
+    watch(
+      [finalPreviewSrcList, finalViewerOptions],
+      () => {
+        init()
+      },
+      { deep: true },
+    )
+
     onMounted(() => {
       init()
     })
