@@ -178,7 +178,7 @@ export default defineComponent({
     }
 
     watch(
-      [() => props.previewSrcList, () => props.zIndex, titleFunc],
+      [finalPreviewSrcList, finalViewerOptions],
       () => {
         init()
       },
