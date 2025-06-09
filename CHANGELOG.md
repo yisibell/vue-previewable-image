@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.4.2
+
+[compare changes](https://github.com/yisibell/vue-previewable-image/compare/v2.4.1...v2.4.2)
+
+### 🩹 Fixes
+
+- Exports type ([87d46c8](https://github.com/yisibell/vue-previewable-image/commit/87d46c8))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.4.1
 
 [compare changes](https://github.com/yisibell/vue-previewable-image/compare/v2.4.0...v2.4.1)
